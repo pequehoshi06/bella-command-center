@@ -155,8 +155,13 @@
       border-radius: 30px;
       padding: 13px 22px;
       font-weight: bold;
-      margin-top: 15px;
+      margin: 8px 5px;
       cursor: pointer;
+    }
+
+    #voiceText {
+      color: var(--muted);
+      overflow-wrap: anywhere;
     }
 
     footer {
@@ -234,14 +239,36 @@
       <strong>ESTADO DEL SISTEMA</strong>
       <p>Sistemas visuales inicializados.</p>
       <p>Mis módulos están preparados para su desarrollo.</p>
-      <button class="action" onclick="window.open('https://chatgpt.com/', '_blank')">
+
+      <button class="action"
+        onclick="window.open('https://chatgpt.com/', '_blank')">
         Abrir asistente IA
       </button>
+
+      <div style="margin-top:20px;">
+        <strong>MÓDULO DE VOZ</strong>
+
+        <p>
+          Sistema de reconocimiento y respuesta por voz.
+        </p>
+
+        <button class="action" onclick="BELLA_VOICE.listen(function(text) {
+          document.getElementById('voiceText').textContent = 'Te escuché: ' + text;
+        })">
+          🎙️ Hablar con B.E.L.L.A.
+        </button>
+
+        <button class="action" onclick="BELLA_VOICE.speak('Hola, Renata. Sistemas de voz inicializados. Estoy a tu servicio.')">
+          🔊 Probar mi voz
+        </button>
+
+        <p id="voiceText">Sistema de voz preparado.</p>
+      </div>
     </section>
   </main>
 
   <footer>
-    B.E.L.L.A. SYSTEMS · VERSION 1.0 · PERSONAL COMMAND CENTER
+    B.E.L.L.A. SYSTEMS · VERSION 1.1 · PERSONAL COMMAND CENTER
   </footer>
 
   <script>
@@ -267,6 +294,7 @@
     updateClock();
     setInterval(updateClock, 1000);
   </script>
+
   <script src="voz.js"></script>
 </body>
 </html>
