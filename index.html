@@ -74,7 +74,10 @@
     }
 
     @keyframes pulse {
-      50% { box-shadow: 0 0 40px #42d99a88, inset 0 0 30px #42d99a44; }
+      50% {
+        box-shadow: 0 0 40px #42d99a88,
+        inset 0 0 30px #42d99a44;
+      }
     }
 
     h1 {
@@ -136,7 +139,7 @@
       margin-top: 6px;
     }
 
-    .message {
+    .message, .voice-panel {
       margin-top: 25px;
       padding: 20px;
       border: 1px solid var(--border);
@@ -146,7 +149,9 @@
       line-height: 1.6;
     }
 
-    .message strong { color: var(--green); }
+    .message strong, .voice-panel strong {
+      color: var(--green);
+    }
 
     .action {
       background: var(--green);
@@ -157,6 +162,45 @@
       font-weight: bold;
       margin: 8px 5px;
       cursor: pointer;
+    }
+
+    .secondary {
+      background: transparent;
+      border: 1px solid var(--green);
+      color: var(--light);
+    }
+
+    select, input[type="range"] {
+      width: 100%;
+      margin: 10px 0 18px;
+    }
+
+    select {
+      background: #071713;
+      color: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 12px;
+    }
+
+    input[type="range"] {
+      accent-color: var(--green);
+    }
+
+    .control {
+      text-align: left;
+      margin-top: 15px;
+    }
+
+    .control label {
+      display: block;
+      color: var(--light);
+      font-size: 14px;
+    }
+
+    .value {
+      color: var(--green);
+      float: right;
     }
 
     #voiceText {
@@ -244,31 +288,55 @@
         onclick="window.open('https://chatgpt.com/', '_blank')">
         Abrir asistente IA
       </button>
+    </section>
 
-      <div style="margin-top:20px;">
-        <strong>MÓDULO DE VOZ</strong>
+    <section class="voice-panel">
+      <strong>VOICE CONTROL 2.0</strong>
+      <p class="subtitle">Personaliza la voz de tu asistente.</p>
 
-        <p>
-          Sistema de reconocimiento y respuesta por voz.
-        </p>
-
-        <button class="action" onclick="BELLA_VOICE.listen(function(text) {
-          document.getElementById('voiceText').textContent = 'Te escuché: ' + text;
-        })">
-          🎙️ Hablar con B.E.L.L.A.
-        </button>
-
-        <button class="action" onclick="BELLA_VOICE.speak('Hola, Renata. Sistemas de voz inicializados. Estoy a tu servicio.')">
-          🔊 Probar mi voz
-        </button>
-
-        <p id="voiceText">Sistema de voz preparado.</p>
+      <div class="control">
+        <label for="voiceSelect">Voz disponible</label>
+        <select id="voiceSelect">
+          <option value="">Buscando voces...</option>
+        </select>
       </div>
+
+      <div class="control">
+        <label for="rate">
+          Velocidad
+          <span class="value" id="rateValue">1.0</span>
+        </label>
+        <input id="rate" type="range"
+          min="0.7" max="1.3" step="0.05" value="1">
+      </div>
+
+      <div class="control">
+        <label for="pitch">
+          Tono
+          <span class="value" id="pitchValue">1.05</span>
+        </label>
+        <input id="pitch" type="range"
+          min="0.7" max="1.4" step="0.05" value="1.05">
+      </div>
+
+      <button class="action" onclick="testVoice()">
+        🔊 Probar mi voz
+      </button>
+
+      <button class="action secondary" onclick="listenBella()">
+        🎙️ Hablar con B.E.L.L.A.
+      </button>
+
+      <button class="action secondary" onclick="BELLA_VOICE.silence()">
+        🔇 Silenciar
+      </button>
+
+      <p id="voiceText">Sistema de voz preparado.</p>
     </section>
   </main>
 
   <footer>
-    B.E.L.L.A. SYSTEMS · VERSION 1.1 · PERSONAL COMMAND CENTER
+    B.E.L.L.A. SYSTEMS · VERSION 2.0 · PERSONAL COMMAND CENTER
   </footer>
 
   <script>
@@ -291,8 +359,101 @@
       alert(name + ": módulo en construcción. Próximamente.");
     }
 
+    function loadVoiceOptions() {
+      const select = document.getElementById("voiceSelect");
+      const voices = BELLA_VOICE.getVoices();
+      const previous = BELLA_VOICE.selectedVoice;
+
+      select.innerHTML = "";
+
+      const spanishVoices = voices.filter(
+        voice => voice.lang.toLowerCase().startsWith("es")
+      );
+
+      const available = spanishVoices.length ? spanishVoices : voices;
+
+      if (!available.length) {
+        select.innerHTML =
+          '<option value="">No hay voces disponibles</option>';
+        return;
+      }
+
+      available.forEach(voice => {
+        const option = document.createElement("option");
+        option.value = voice.name;
+        option.textContent = voice.name + " (" + voice.lang + ")";
+        select.appendChild(option);
+      });
+
+      const exists = available.some(v => v.name === previous);
+
+      if (exists) {
+        select.value = previous;
+      } else {
+        const defaultVoice = available.find(
+          v => v.lang === "es-CL"
+        ) || available.find(
+          v => v.lang.startsWith("es")
+        ) || available[0];
+
+        select.value = defaultVoice.name;
+        BELLA_VOICE.setVoice(defaultVoice.name);
+      }
+    }
+
+    function saveVoiceSettings() {
+      BELLA_VOICE.setVoice(
+        document.getElementById("voiceSelect").value
+      );
+    }
+
+    function testVoice() {
+      saveVoiceSettings();
+
+      BELLA_VOICE.speak(
+        "Hola, Renata. Soy B.E.L.L.A. Tu asistente personal. Estoy a tu servicio, aunque debo admitir que tus proyectos empiezan a necesitar su propio asistente."
+      );
+    }
+
+    function listenBella() {
+      BELLA_VOICE.listen(function(text) {
+        document.getElementById("voiceText").textContent =
+          "Te escuché: " + text;
+      });
+    }
+
+    const rate = document.getElementById("rate");
+    const pitch = document.getElementById("pitch");
+
+    rate.value = BELLA_VOICE.rate;
+    pitch.value = BELLA_VOICE.pitch;
+
+    document.getElementById("rateValue").textContent =
+      Number(rate.value).toFixed(2);
+
+    document.getElementById("pitchValue").textContent =
+      Number(pitch.value).toFixed(2);
+
+    rate.addEventListener("input", function() {
+      BELLA_VOICE.setRate(this.value);
+      document.getElementById("rateValue").textContent =
+        Number(this.value).toFixed(2);
+    });
+
+    pitch.addEventListener("input", function() {
+      BELLA_VOICE.setPitch(this.value);
+      document.getElementById("pitchValue").textContent =
+        Number(this.value).toFixed(2);
+    });
+
+    document.getElementById("voiceSelect")
+      .addEventListener("change", saveVoiceSettings);
+
     updateClock();
     setInterval(updateClock, 1000);
+
+    loadVoiceOptions();
+    window.speechSynthesis.onvoiceschanged = loadVoiceOptions;
   </script>
 
   <script src="voz.js"></script>
