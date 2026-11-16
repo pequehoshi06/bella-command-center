@@ -2,350 +2,526 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B.E.L.L.A. | Sistema Central</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07130e">
+<title>B.E.L.L.A. | Personal Intelligence</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      padding: 25px 18px;
-      background: #07130e;
-      color: #e5f5eb;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 25px 18px;
+  background:
+    radial-gradient(ellipse at top, #153b29 0%, #07130e 65%);
+  color: #e5f5eb;
+  font-family: Arial, sans-serif;
+}
 
-    .container {
-      width: 100%;
-      max-width: 520px;
-      background: #10251b;
-      border: 1px solid #28583d;
-      border-radius: 22px;
-      padding: 25px;
-      box-shadow: 0 0 35px #163d2a66;
-    }
+.container {
+  max-width: 560px;
+  margin: auto;
+}
 
-    .status {
-      color: #78e6a4;
-      font-size: 12px;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
-    }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 25px;
+}
 
-    h1 {
-      color: #a4edbd;
-      font-size: 29px;
-      margin-bottom: 8px;
-    }
+.brand {
+  color: #a4edbd;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
 
-    .subtitle {
-      color: #c2d8ca;
-      margin-bottom: 28px;
-    }
+.status {
+  color: #78e6a4;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
 
-    .clock {
-      font-size: 48px;
-      font-weight: bold;
-      color: #ffffff;
-      letter-spacing: 2px;
-      margin-top: 25px;
-    }
+.welcome {
+  text-align: center;
+  padding: 32px 10px 35px;
+}
 
-    .date {
-      color: #8fcea6;
-      margin-top: 8px;
-      margin-bottom: 30px;
-      text-transform: capitalize;
-    }
+.logo {
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 18px;
+  border: 1px solid #61d994;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9af0b8;
+  font-size: 42px;
+  box-shadow: 0 0 30px #3ba66a33;
+  background: #10251b;
+}
 
-    .section {
-      border-top: 1px solid #28583d;
-      padding-top: 22px;
-      margin-top: 20px;
-    }
+h1 {
+  font-size: 36px;
+  letter-spacing: 5px;
+  margin: 8px 0;
+  color: #b5f2c9;
+}
 
-    h2 {
-      font-size: 15px;
-      letter-spacing: 2px;
-      color: #8ee5ad;
-      margin-bottom: 20px;
-    }
+.tagline {
+  color: #77a98a;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
 
-    label {
-      display: block;
-      margin: 15px 0 8px;
-      color: #c9e2d1;
-      font-size: 14px;
-    }
+.greeting {
+  margin-top: 38px;
+  font-size: 23px;
+  color: #e5f5eb;
+}
 
-    select, button {
-      width: 100%;
-      padding: 13px;
-      border-radius: 10px;
-      border: 1px solid #39734e;
-      background: #183b29;
-      color: white;
-      font-size: 14px;
-    }
+.message {
+  color: #a8c9b3;
+  margin-top: 9px;
+  font-size: 14px;
+}
 
-    input[type="range"] {
-      width: 100%;
-      accent-color: #75dfa0;
-    }
+.clock {
+  font-size: 43px;
+  color: #91eab0;
+  font-weight: bold;
+  margin-top: 28px;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
 
-    button {
-      margin-top: 12px;
-      cursor: pointer;
-      background: #24583a;
-      border: none;
-      font-weight: bold;
-    }
+.date {
+  color: #83ad91;
+  font-size: 13px;
+  margin-top: 7px;
+  text-transform: capitalize;
+}
 
-    button:active {
-      background: #347b50;
-    }
+.line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #35684a, transparent);
+  margin: 20px 0 28px;
+}
 
-    .secondary {
-      background: #193527;
-      border: 1px solid #39734e;
-    }
+.section-title {
+  color: #8de4aa;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
 
-    #voiceText {
-      color: #a4edbd;
-      font-size: 14px;
-      margin-top: 15px;
-      min-height: 20px;
-    }
+.modules {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 11px;
+}
 
-    .footer {
-      margin-top: 30px;
-      color: #668b73;
-      font-size: 11px;
-      text-align: center;
-      letter-spacing: 1px;
-    }
-  </style>
+.module {
+  background: #10251b;
+  border: 1px solid #28583d;
+  border-radius: 13px;
+  padding: 18px 12px;
+  color: #d9f1e1;
+  text-align: center;
+  font-size: 13px;
+  transition: .2s;
+}
+
+.module .symbol {
+  display: block;
+  font-size: 23px;
+  margin-bottom: 9px;
+  color: #83e2a3;
+}
+
+.module:active {
+  background: #1c4630;
+}
+
+.assistant {
+  margin-top: 30px;
+  background: #10251b;
+  border: 1px solid #28583d;
+  border-radius: 16px;
+  padding: 19px;
+}
+
+.assistant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assistant-name {
+  color: #a5edbd;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.online {
+  font-size: 10px;
+  color: #78e6a4;
+}
+
+.assistant-description {
+  color: #89aa94;
+  font-size: 12px;
+  margin: 12px 0 17px;
+}
+
+button, select {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #39734e;
+  background: #193b29;
+  color: white;
+  padding: 13px;
+  font-size: 13px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.main-button {
+  background: #286441;
+  border: none;
+  font-weight: bold;
+}
+
+.button-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 10px;
+}
+
+.voice-section {
+  margin-top: 28px;
+  padding: 20px;
+  border-radius: 15px;
+  background: #0d2017;
+  border: 1px solid #244b33;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  color: #b6d8c0;
+  margin: 16px 0 8px;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: #78e6a4;
+}
+
+.value {
+  color: #8de4aa;
+}
+
+#voiceText {
+  color: #a4edbd;
+  font-size: 12px;
+  margin-top: 14px;
+  min-height: 18px;
+}
+
+footer {
+  color: #54765e;
+  font-size: 10px;
+  text-align: center;
+  margin: 30px 0 10px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 360px) {
+  h1 { font-size: 29px; }
+  .clock { font-size: 36px; }
+}
+</style>
 </head>
 
 <body>
+<main class="container">
 
-  <main class="container">
+<header>
+  <div class="brand">B.E.L.L.A.</div>
+  <div class="status">● SYSTEM ONLINE</div>
+</header>
 
-    <div class="status">
-      ● B.E.L.L.A. SYSTEM ONLINE
+<section class="welcome">
+
+  <div class="logo">✧</div>
+
+  <h1>B.E.L.L.A.</h1>
+  <div class="tagline">PERSONAL INTELLIGENCE SYSTEM</div>
+
+  <div class="greeting" id="greeting">
+    Hola, Renata.
+  </div>
+
+  <div class="message" id="greetingMessage">
+    Estoy a tu servicio.
+  </div>
+
+  <div class="clock" id="clock">--:--:--</div>
+  <div class="date" id="date">Cargando fecha...</div>
+
+</section>
+
+<div class="line"></div>
+
+<section>
+  <div class="section-title">CENTRO DE CONTROL</div>
+
+  <div class="modules">
+    <div class="module">
+      <span class="symbol">◷</span>
+      Agenda
     </div>
 
-    <h1 id="greeting">Hola, Renata.</h1>
-
-    <div class="subtitle" id="greetingMessage">
-      Estoy a tu servicio.
+    <div class="module">
+      <span class="symbol">✓</span>
+      Tareas
     </div>
 
-    <div class="clock" id="clock">--:--:--</div>
-    <div class="date" id="date">Cargando fecha...</div>
-
-    <section class="section">
-      <h2>VOICE CONTROL 2.0</h2>
-
-      <label for="voiceSelect">Seleccionar voz</label>
-      <select id="voiceSelect">
-        <option value="">Cargando voces...</option>
-      </select>
-
-      <label for="rate">
-        Velocidad: <span id="rateValue">1.0</span>
-      </label>
-      <input
-        type="range"
-        id="rate"
-        min="0.7"
-        max="1.3"
-        step="0.1"
-        value="1"
-      >
-
-      <label for="pitch">
-        Tono: <span id="pitchValue">1.05</span>
-      </label>
-      <input
-        type="range"
-        id="pitch"
-        min="0.7"
-        max="1.4"
-        step="0.05"
-        value="1.05"
-      >
-
-      <button onclick="testVoice()">Probar mi voz</button>
-      <button class="secondary" onclick="listenBella()">
-        🎙️ Hablar con B.E.L.L.A.
-      </button>
-      <button class="secondary" onclick="silenceBella()">
-        Silenciar
-      </button>
-
-      <div id="voiceText">
-        Sistema de reconocimiento preparado.
-      </div>
-    </section>
-
-    <div class="footer">
-      PERSONAL INTELLIGENCE SYSTEM · B.E.L.L.A.
+    <div class="module">
+      <span class="symbol">⌘</span>
+      Academia
     </div>
 
-  </main>
+    <div class="module">
+      <span class="symbol">◇</span>
+      Finanzas
+    </div>
 
-  <!-- Primero cargamos el motor de voz -->
-  <script src="voz.js"></script>
+    <div class="module">
+      <span class="symbol">▤</span>
+      Proyectos
+    </div>
 
-  <script>
-    // RELOJ Y SALUDO AUTOMÁTICO
+    <div class="module">
+      <span class="symbol">✧</span>
+      Configuración
+    </div>
+  </div>
+</section>
 
-    function updateClock() {
-      const now = new Date();
+<section class="assistant">
 
-      const time = new Intl.DateTimeFormat("es-CL", {
-        timeZone: "America/Santiago",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false
-      }).format(now);
+  <div class="assistant-header">
+    <div class="assistant-name">B.E.L.L.A.</div>
+    <div class="online">● ONLINE</div>
+  </div>
 
-      const date = new Intl.DateTimeFormat("es-CL", {
-        timeZone: "America/Santiago",
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      }).format(now);
+  <div class="assistant-description">
+    Sistema de inteligencia personal · Esperando instrucciones.
+  </div>
 
-      document.getElementById("clock").textContent = time;
-      document.getElementById("date").textContent = date;
+  <button class="main-button" onclick="openAssistant()">
+    ✧ Abrir asistente IA
+  </button>
 
-      const hour = Number(
-        new Intl.DateTimeFormat("en-US", {
-          timeZone: "America/Santiago",
-          hour: "numeric",
-          hour12: false
-        }).format(now)
-      );
+  <div class="button-row">
+    <button onclick="listenBella()">🎙️ Hablar</button>
+    <button onclick="testVoice()">🔊 Probar voz</button>
+  </div>
 
-      let greeting;
-      let message;
+  <div id="voiceText">Sistema preparado.</div>
 
-      if (hour >= 5 && hour < 12) {
-        greeting = "Buenos días, Renata.";
-        message = "Espero que hayas descansado. Estoy a tu servicio.";
-      } else if (hour >= 12 && hour < 20) {
-        greeting = "Buenas tardes, Renata.";
-        message = "Espero que tu día vaya bien. Estoy a tu servicio.";
-      } else {
-        greeting = "Buenas noches, Renata.";
-        message = "¿Lista para continuar? Estoy a tu servicio.";
-      }
+</section>
 
-      document.getElementById("greeting").textContent = greeting;
-      document.getElementById("greetingMessage").textContent = message;
-    }
+<section class="voice-section">
 
-    updateClock();
-    setInterval(updateClock, 1000);
+  <div class="section-title">VOICE CONTROL 2.0</div>
+
+  <label for="voiceSelect">Seleccionar voz</label>
+  <select id="voiceSelect">
+    <option value="">Cargando voces...</option>
+  </select>
+
+  <label for="rate">
+    Velocidad: <span class="value" id="rateValue">1.0</span>
+  </label>
+  <input type="range" id="rate"
+    min="0.7" max="1.3" step="0.1" value="1">
+
+  <label for="pitch">
+    Tono: <span class="value" id="pitchValue">1.05</span>
+  </label>
+  <input type="range" id="pitch"
+    min="0.7" max="1.4" step="0.05" value="1.05">
+
+  <button onclick="silenceBella()" style="margin-top:18px">
+    Silenciar B.E.L.L.A.
+  </button>
+
+</section>
+
+<footer>
+  B.E.L.L.A. SYSTEMS · PERSONAL COMMAND CENTER
+</footer>
+
+</main>
+
+<script src="voz.js"></script>
+
+<script>
+// RELOJ Y SALUDO DE CHILE
+
+function updateClock() {
+  const now = new Date();
+
+  const time = new Intl.DateTimeFormat("es-CL", {
+    timeZone: "America/Santiago",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  }).format(now);
+
+  const date = new Intl.DateTimeFormat("es-CL", {
+    timeZone: "America/Santiago",
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  }).format(now);
+
+  document.getElementById("clock").textContent = time;
+  document.getElementById("date").textContent = date;
+
+  const hour = Number(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Santiago",
+      hour: "numeric",
+      hour12: false
+    }).format(now)
+  );
+
+  let greeting;
+  let message;
+
+  if (hour >= 5 && hour < 12) {
+    greeting = "Buenos días, Renata.";
+    message = "Espero que hayas descansado. Estoy a tu servicio.";
+  } else if (hour >= 12 && hour < 20) {
+    greeting = "Buenas tardes, Renata.";
+    message = "Espero que tu día vaya bien. Estoy a tu servicio.";
+  } else {
+    greeting = "Buenas noches, Renata.";
+    message = "¿Lista para continuar? Estoy a tu servicio.";
+  }
+
+  document.getElementById("greeting").textContent = greeting;
+  document.getElementById("greetingMessage").textContent = message;
+}
+
+updateClock();
+setInterval(updateClock, 1000);
 
 
-    // CONFIGURACIÓN DE VOZ
+// CONFIGURACIÓN DE VOZ
 
-    const voiceSelect = document.getElementById("voiceSelect");
-    const rateSlider = document.getElementById("rate");
-    const pitchSlider = document.getElementById("pitch");
+const voiceSelect = document.getElementById("voiceSelect");
+const rateSlider = document.getElementById("rate");
+const pitchSlider = document.getElementById("pitch");
 
-    function loadVoiceOptions() {
-      if (!window.BELLA_VOICE) return;
+function loadVoiceOptions() {
+  if (!window.BELLA_VOICE) return;
 
-      const voices = BELLA_VOICE.getVoices();
-      const spanishVoices = voices.filter(v =>
-        v.lang.toLowerCase().startsWith("es")
-      );
+  const voices = BELLA_VOICE.getVoices();
+  const spanishVoices = voices.filter(v =>
+    v.lang.toLowerCase().startsWith("es")
+  );
 
-      voiceSelect.innerHTML = "";
+  const previous = BELLA_VOICE.selectedVoice;
+  voiceSelect.innerHTML = "";
 
-      if (spanishVoices.length === 0) {
-        voiceSelect.innerHTML =
-          '<option value="">Voz predeterminada del dispositivo</option>';
-        return;
-      }
+  if (spanishVoices.length === 0) {
+    voiceSelect.innerHTML =
+      '<option value="">Voz predeterminada del dispositivo</option>';
+    return;
+  }
 
-      spanishVoices.forEach(voice => {
-        const option = document.createElement("option");
-        option.value = voice.name;
-        option.textContent = voice.name + " (" + voice.lang + ")";
-        voiceSelect.appendChild(option);
-      });
+  spanishVoices.forEach(voice => {
+    const option = document.createElement("option");
+    option.value = voice.name;
+    option.textContent = voice.name + " (" + voice.lang + ")";
+    voiceSelect.appendChild(option);
+  });
 
-      if (BELLA_VOICE.selectedVoice) {
-        voiceSelect.value = BELLA_VOICE.selectedVoice;
-      }
-    }
+  if (previous) voiceSelect.value = previous;
+}
 
-    if (window.speechSynthesis) {
-      window.speechSynthesis.onvoiceschanged = loadVoiceOptions;
-    }
+if (window.speechSynthesis) {
+  window.speechSynthesis.onvoiceschanged = loadVoiceOptions;
+}
 
-    loadVoiceOptions();
+loadVoiceOptions();
 
-    rateSlider.value = BELLA_VOICE.rate;
-    pitchSlider.value = BELLA_VOICE.pitch;
+rateSlider.value = BELLA_VOICE.rate;
+pitchSlider.value = BELLA_VOICE.pitch;
 
-    document.getElementById("rateValue").textContent =
-      Number(rateSlider.value).toFixed(1);
+document.getElementById("rateValue").textContent =
+  Number(rateSlider.value).toFixed(1);
 
-    document.getElementById("pitchValue").textContent =
-      Number(pitchSlider.value).toFixed(2);
+document.getElementById("pitchValue").textContent =
+  Number(pitchSlider.value).toFixed(2);
 
-    voiceSelect.addEventListener("change", () => {
-      BELLA_VOICE.setVoice(voiceSelect.value);
-    });
+voiceSelect.addEventListener("change", () => {
+  BELLA_VOICE.setVoice(voiceSelect.value);
+});
 
-    rateSlider.addEventListener("input", () => {
-      BELLA_VOICE.setRate(rateSlider.value);
-      document.getElementById("rateValue").textContent =
-        Number(rateSlider.value).toFixed(1);
-    });
+rateSlider.addEventListener("input", () => {
+  BELLA_VOICE.setRate(rateSlider.value);
+  document.getElementById("rateValue").textContent =
+    Number(rateSlider.value).toFixed(1);
+});
 
-    pitchSlider.addEventListener("input", () => {
-      BELLA_VOICE.setPitch(pitchSlider.value);
-      document.getElementById("pitchValue").textContent =
-        Number(pitchSlider.value).toFixed(2);
-    });
+pitchSlider.addEventListener("input", () => {
+  BELLA_VOICE.setPitch(pitchSlider.value);
+  document.getElementById("pitchValue").textContent =
+    Number(pitchSlider.value).toFixed(2);
+});
 
-    function testVoice() {
-      BELLA_VOICE.speak(
-        "Hola, Renata. Soy B.E.L.L.A. Tu sistema personal está operativo. ¿Qué necesitas hoy?"
-      );
-    }
+function testVoice() {
+  BELLA_VOICE.speak(
+    "Hola, Renata. Soy B.E.L.L.A. Tu sistema personal está operativo. Estoy a tu servicio."
+  );
+}
 
-    function listenBella() {
-      BELLA_VOICE.listen(message => {
-        document.getElementById("voiceText").textContent =
-          "Te escuché: " + message;
-      });
-    }
+function listenBella() {
+  BELLA_VOICE.listen(message => {
+    document.getElementById("voiceText").textContent =
+      "Te escuché: " + message;
+  });
+}
 
-    function silenceBella() {
-      BELLA_VOICE.silence();
-      BELLA_VOICE.stop();
-      document.getElementById("voiceText").textContent =
-        "Sistema en silencio.";
-    }
-  </script>
+function silenceBella() {
+  BELLA_VOICE.silence();
+  BELLA_VOICE.stop();
+
+  document.getElementById("voiceText").textContent =
+    "Sistema en silencio.";
+}
+
+function openAssistant() {
+  document.getElementById("voiceText").textContent =
+    "El módulo de conversación IA está pendiente de conexión.";
+}
+</script>
 
 </body>
 </html>
