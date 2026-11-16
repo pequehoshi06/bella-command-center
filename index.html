@@ -4,458 +4,348 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#071713">
-  <title>B.E.L.L.A. | Command Center</title>
+  <title>B.E.L.L.A. | Sistema Central</title>
 
   <style>
-    :root {
-      --bg: #071713;
-      --panel: #10251f;
-      --green: #42d99a;
-      --light: #d9f5e9;
-      --muted: #91b5a5;
-      --border: #244638;
+    * {
+      box-sizing: border-box;
     }
-
-    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       min-height: 100vh;
-      background: radial-gradient(circle at 50% 0%, #173d30, var(--bg) 65%);
-      color: var(--light);
+      padding: 25px 18px;
+      background: #07130e;
+      color: #e5f5eb;
       font-family: Arial, sans-serif;
-    }
-
-    header {
-      padding: 24px 20px;
-      border-bottom: 1px solid var(--border);
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
     }
 
-    .brand {
-      color: var(--green);
-      font-size: 23px;
-      font-weight: bold;
-      letter-spacing: 4px;
+    .container {
+      width: 100%;
+      max-width: 520px;
+      background: #10251b;
+      border: 1px solid #28583d;
+      border-radius: 22px;
+      padding: 25px;
+      box-shadow: 0 0 35px #163d2a66;
     }
 
     .status {
-      color: var(--green);
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
-
-    main {
-      max-width: 950px;
-      margin: auto;
-      padding: 35px 20px;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 30px 10px 40px;
-    }
-
-    .core {
-      width: 115px;
-      height: 115px;
-      margin: 0 auto 22px;
-      border: 2px solid var(--green);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 0 25px #42d99a55, inset 0 0 25px #42d99a22;
-      font-size: 46px;
-      color: var(--green);
-      animation: pulse 3s infinite;
-    }
-
-    @keyframes pulse {
-      50% {
-        box-shadow: 0 0 40px #42d99a88,
-        inset 0 0 30px #42d99a44;
-      }
+      color: #78e6a4;
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
     }
 
     h1 {
-      color: var(--green);
-      letter-spacing: 5px;
-      font-size: 30px;
-      margin: 8px;
+      color: #a4edbd;
+      font-size: 29px;
+      margin-bottom: 8px;
     }
 
-    .subtitle { color: var(--muted); }
+    .subtitle {
+      color: #c2d8ca;
+      margin-bottom: 28px;
+    }
 
     .clock {
-      font-size: 25px;
-      margin-top: 22px;
+      font-size: 48px;
       font-weight: bold;
-    }
-
-    .section-title {
-      font-size: 13px;
+      color: #ffffff;
       letter-spacing: 2px;
-      color: var(--muted);
-      margin: 25px 0 15px;
-    }
-
-    .modules {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 13px;
-    }
-
-    .module {
-      background: linear-gradient(145deg, #153329, #0c201a);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px 15px;
-      min-height: 115px;
-      color: var(--light);
-      text-align: left;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .module:hover {
-      border-color: var(--green);
-      transform: translateY(-3px);
-    }
-
-    .module .symbol {
-      display: block;
-      font-size: 25px;
-      margin-bottom: 12px;
-    }
-
-    .module strong { font-size: 15px; }
-
-    .module small {
-      display: block;
-      color: var(--muted);
-      margin-top: 6px;
-    }
-
-    .message, .voice-panel {
       margin-top: 25px;
-      padding: 20px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: #10251f;
-      text-align: center;
-      line-height: 1.6;
     }
 
-    .message strong, .voice-panel strong {
-      color: var(--green);
+    .date {
+      color: #8fcea6;
+      margin-top: 8px;
+      margin-bottom: 30px;
+      text-transform: capitalize;
     }
 
-    .action {
-      background: var(--green);
-      color: #062017;
-      border: none;
-      border-radius: 30px;
-      padding: 13px 22px;
-      font-weight: bold;
-      margin: 8px 5px;
-      cursor: pointer;
+    .section {
+      border-top: 1px solid #28583d;
+      padding-top: 22px;
+      margin-top: 20px;
     }
 
-    .secondary {
-      background: transparent;
-      border: 1px solid var(--green);
-      color: var(--light);
+    h2 {
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: #8ee5ad;
+      margin-bottom: 20px;
     }
 
-    select, input[type="range"] {
-      width: 100%;
-      margin: 10px 0 18px;
-    }
-
-    select {
-      background: #071713;
-      color: var(--light);
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 12px;
-    }
-
-    input[type="range"] {
-      accent-color: var(--green);
-    }
-
-    .control {
-      text-align: left;
-      margin-top: 15px;
-    }
-
-    .control label {
+    label {
       display: block;
-      color: var(--light);
+      margin: 15px 0 8px;
+      color: #c9e2d1;
       font-size: 14px;
     }
 
-    .value {
-      color: var(--green);
-      float: right;
+    select, button {
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      border: 1px solid #39734e;
+      background: #183b29;
+      color: white;
+      font-size: 14px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: #75dfa0;
+    }
+
+    button {
+      margin-top: 12px;
+      cursor: pointer;
+      background: #24583a;
+      border: none;
+      font-weight: bold;
+    }
+
+    button:active {
+      background: #347b50;
+    }
+
+    .secondary {
+      background: #193527;
+      border: 1px solid #39734e;
     }
 
     #voiceText {
-      color: var(--muted);
-      overflow-wrap: anywhere;
+      color: #a4edbd;
+      font-size: 14px;
+      margin-top: 15px;
+      min-height: 20px;
     }
 
-    footer {
-      text-align: center;
-      padding: 30px 15px;
-      color: var(--muted);
+    .footer {
+      margin-top: 30px;
+      color: #668b73;
       font-size: 11px;
+      text-align: center;
       letter-spacing: 1px;
-    }
-
-    @media (min-width: 650px) {
-      .modules { grid-template-columns: repeat(3, 1fr); }
-      main { padding-top: 50px; }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="brand">B.E.L.L.A.</div>
-    <div class="status">● SYSTEM ONLINE</div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="core">✧</div>
-      <h1>B.E.L.L.A.</h1>
-      <p class="subtitle">Personal Intelligence System</p>
-      <p>Buenos días, Renata. Estoy a tu servicio.</p>
-      <div class="clock" id="clock">--:--:--</div>
-      <div class="subtitle" id="date"></div>
-    </section>
+  <main class="container">
 
-    <div class="section-title">CENTRO DE OPERACIONES</div>
+    <div class="status">
+      ● B.E.L.L.A. SYSTEM ONLINE
+    </div>
 
-    <section class="modules">
-      <button class="module" onclick="moduleInfo('Agenda')">
-        <span class="symbol">◷</span>
-        <strong>Agenda</strong>
-        <small>Organización diaria</small>
-      </button>
+    <h1 id="greeting">Hola, Renata.</h1>
 
-      <button class="module" onclick="moduleInfo('Tareas')">
-        <span class="symbol">✓</span>
-        <strong>Tareas</strong>
-        <small>Pendientes y objetivos</small>
-      </button>
+    <div class="subtitle" id="greetingMessage">
+      Estoy a tu servicio.
+    </div>
 
-      <button class="module" onclick="moduleInfo('Academia')">
-        <span class="symbol">⌘</span>
-        <strong>Academia</strong>
-        <small>Nutrición y estudios</small>
-      </button>
+    <div class="clock" id="clock">--:--:--</div>
+    <div class="date" id="date">Cargando fecha...</div>
 
-      <button class="module" onclick="moduleInfo('Finanzas')">
-        <span class="symbol">◇</span>
-        <strong>Finanzas</strong>
-        <small>Presupuesto y ahorro</small>
-      </button>
+    <section class="section">
+      <h2>VOICE CONTROL 2.0</h2>
 
-      <button class="module" onclick="moduleInfo('Proyectos')">
-        <span class="symbol">▤</span>
-        <strong>Proyectos</strong>
-        <small>Ideas y documentos</small>
-      </button>
+      <label for="voiceSelect">Seleccionar voz</label>
+      <select id="voiceSelect">
+        <option value="">Cargando voces...</option>
+      </select>
 
-      <button class="module" onclick="moduleInfo('Comunicación')">
-        <span class="symbol">◎</span>
-        <strong>Comunicación</strong>
-        <small>Hablar con Bella</small>
-      </button>
-    </section>
+      <label for="rate">
+        Velocidad: <span id="rateValue">1.0</span>
+      </label>
+      <input
+        type="range"
+        id="rate"
+        min="0.7"
+        max="1.3"
+        step="0.1"
+        value="1"
+      >
 
-    <section class="message">
-      <strong>ESTADO DEL SISTEMA</strong>
-      <p>Sistemas visuales inicializados.</p>
-      <p>Mis módulos están preparados para su desarrollo.</p>
+      <label for="pitch">
+        Tono: <span id="pitchValue">1.05</span>
+      </label>
+      <input
+        type="range"
+        id="pitch"
+        min="0.7"
+        max="1.4"
+        step="0.05"
+        value="1.05"
+      >
 
-      <button class="action"
-        onclick="window.open('https://chatgpt.com/', '_blank')">
-        Abrir asistente IA
-      </button>
-    </section>
-
-    <section class="voice-panel">
-      <strong>VOICE CONTROL 2.0</strong>
-      <p class="subtitle">Personaliza la voz de tu asistente.</p>
-
-      <div class="control">
-        <label for="voiceSelect">Voz disponible</label>
-        <select id="voiceSelect">
-          <option value="">Buscando voces...</option>
-        </select>
-      </div>
-
-      <div class="control">
-        <label for="rate">
-          Velocidad
-          <span class="value" id="rateValue">1.0</span>
-        </label>
-        <input id="rate" type="range"
-          min="0.7" max="1.3" step="0.05" value="1">
-      </div>
-
-      <div class="control">
-        <label for="pitch">
-          Tono
-          <span class="value" id="pitchValue">1.05</span>
-        </label>
-        <input id="pitch" type="range"
-          min="0.7" max="1.4" step="0.05" value="1.05">
-      </div>
-
-      <button class="action" onclick="testVoice()">
-        🔊 Probar mi voz
-      </button>
-
-      <button class="action secondary" onclick="listenBella()">
+      <button onclick="testVoice()">Probar mi voz</button>
+      <button class="secondary" onclick="listenBella()">
         🎙️ Hablar con B.E.L.L.A.
       </button>
-
-      <button class="action secondary" onclick="BELLA_VOICE.silence()">
-        🔇 Silenciar
+      <button class="secondary" onclick="silenceBella()">
+        Silenciar
       </button>
 
-      <p id="voiceText">Sistema de voz preparado.</p>
+      <div id="voiceText">
+        Sistema de reconocimiento preparado.
+      </div>
     </section>
+
+    <div class="footer">
+      PERSONAL INTELLIGENCE SYSTEM · B.E.L.L.A.
+    </div>
+
   </main>
 
-  <footer>
-    B.E.L.L.A. SYSTEMS · VERSION 2.0 · PERSONAL COMMAND CENTER
-  </footer>
+  <!-- Primero cargamos el motor de voz -->
+  <script src="voz.js"></script>
 
   <script>
+    // RELOJ Y SALUDO AUTOMÁTICO
+
     function updateClock() {
       const now = new Date();
 
-      document.getElementById("clock").textContent =
-        now.toLocaleTimeString("es-CL");
+      const time = new Intl.DateTimeFormat("es-CL", {
+        timeZone: "America/Santiago",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      }).format(now);
 
-      document.getElementById("date").textContent =
-        now.toLocaleDateString("es-CL", {
-          weekday: "long",
-          day: "numeric",
-          month: "long",
-          year: "numeric"
-        });
-    }
+      const date = new Intl.DateTimeFormat("es-CL", {
+        timeZone: "America/Santiago",
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }).format(now);
 
-    function moduleInfo(name) {
-      alert(name + ": módulo en construcción. Próximamente.");
-    }
+      document.getElementById("clock").textContent = time;
+      document.getElementById("date").textContent = date;
 
-    function loadVoiceOptions() {
-      const select = document.getElementById("voiceSelect");
-      const voices = BELLA_VOICE.getVoices();
-      const previous = BELLA_VOICE.selectedVoice;
-
-      select.innerHTML = "";
-
-      const spanishVoices = voices.filter(
-        voice => voice.lang.toLowerCase().startsWith("es")
+      const hour = Number(
+        new Intl.DateTimeFormat("en-US", {
+          timeZone: "America/Santiago",
+          hour: "numeric",
+          hour12: false
+        }).format(now)
       );
 
-      const available = spanishVoices.length ? spanishVoices : voices;
+      let greeting;
+      let message;
 
-      if (!available.length) {
-        select.innerHTML =
-          '<option value="">No hay voces disponibles</option>';
-        return;
-      }
-
-      available.forEach(voice => {
-        const option = document.createElement("option");
-        option.value = voice.name;
-        option.textContent = voice.name + " (" + voice.lang + ")";
-        select.appendChild(option);
-      });
-
-      const exists = available.some(v => v.name === previous);
-
-      if (exists) {
-        select.value = previous;
+      if (hour >= 5 && hour < 12) {
+        greeting = "Buenos días, Renata.";
+        message = "Espero que hayas descansado. Estoy a tu servicio.";
+      } else if (hour >= 12 && hour < 20) {
+        greeting = "Buenas tardes, Renata.";
+        message = "Espero que tu día vaya bien. Estoy a tu servicio.";
       } else {
-        const defaultVoice = available.find(
-          v => v.lang === "es-CL"
-        ) || available.find(
-          v => v.lang.startsWith("es")
-        ) || available[0];
-
-        select.value = defaultVoice.name;
-        BELLA_VOICE.setVoice(defaultVoice.name);
+        greeting = "Buenas noches, Renata.";
+        message = "¿Lista para continuar? Estoy a tu servicio.";
       }
+
+      document.getElementById("greeting").textContent = greeting;
+      document.getElementById("greetingMessage").textContent = message;
     }
-
-    function saveVoiceSettings() {
-      BELLA_VOICE.setVoice(
-        document.getElementById("voiceSelect").value
-      );
-    }
-
-    function testVoice() {
-      saveVoiceSettings();
-
-      BELLA_VOICE.speak(
-        "Hola, Renata. Soy B.E.L.L.A. Tu asistente personal. Estoy a tu servicio, aunque debo admitir que tus proyectos empiezan a necesitar su propio asistente."
-      );
-    }
-
-    function listenBella() {
-      BELLA_VOICE.listen(function(text) {
-        document.getElementById("voiceText").textContent =
-          "Te escuché: " + text;
-      });
-    }
-
-    const rate = document.getElementById("rate");
-    const pitch = document.getElementById("pitch");
-
-    rate.value = BELLA_VOICE.rate;
-    pitch.value = BELLA_VOICE.pitch;
-
-    document.getElementById("rateValue").textContent =
-      Number(rate.value).toFixed(2);
-
-    document.getElementById("pitchValue").textContent =
-      Number(pitch.value).toFixed(2);
-
-    rate.addEventListener("input", function() {
-      BELLA_VOICE.setRate(this.value);
-      document.getElementById("rateValue").textContent =
-        Number(this.value).toFixed(2);
-    });
-
-    pitch.addEventListener("input", function() {
-      BELLA_VOICE.setPitch(this.value);
-      document.getElementById("pitchValue").textContent =
-        Number(this.value).toFixed(2);
-    });
-
-    document.getElementById("voiceSelect")
-      .addEventListener("change", saveVoiceSettings);
 
     updateClock();
     setInterval(updateClock, 1000);
 
+
+    // CONFIGURACIÓN DE VOZ
+
+    const voiceSelect = document.getElementById("voiceSelect");
+    const rateSlider = document.getElementById("rate");
+    const pitchSlider = document.getElementById("pitch");
+
+    function loadVoiceOptions() {
+      if (!window.BELLA_VOICE) return;
+
+      const voices = BELLA_VOICE.getVoices();
+      const spanishVoices = voices.filter(v =>
+        v.lang.toLowerCase().startsWith("es")
+      );
+
+      voiceSelect.innerHTML = "";
+
+      if (spanishVoices.length === 0) {
+        voiceSelect.innerHTML =
+          '<option value="">Voz predeterminada del dispositivo</option>';
+        return;
+      }
+
+      spanishVoices.forEach(voice => {
+        const option = document.createElement("option");
+        option.value = voice.name;
+        option.textContent = voice.name + " (" + voice.lang + ")";
+        voiceSelect.appendChild(option);
+      });
+
+      if (BELLA_VOICE.selectedVoice) {
+        voiceSelect.value = BELLA_VOICE.selectedVoice;
+      }
+    }
+
+    if (window.speechSynthesis) {
+      window.speechSynthesis.onvoiceschanged = loadVoiceOptions;
+    }
+
     loadVoiceOptions();
-    window.speechSynthesis.onvoiceschanged = loadVoiceOptions;
+
+    rateSlider.value = BELLA_VOICE.rate;
+    pitchSlider.value = BELLA_VOICE.pitch;
+
+    document.getElementById("rateValue").textContent =
+      Number(rateSlider.value).toFixed(1);
+
+    document.getElementById("pitchValue").textContent =
+      Number(pitchSlider.value).toFixed(2);
+
+    voiceSelect.addEventListener("change", () => {
+      BELLA_VOICE.setVoice(voiceSelect.value);
+    });
+
+    rateSlider.addEventListener("input", () => {
+      BELLA_VOICE.setRate(rateSlider.value);
+      document.getElementById("rateValue").textContent =
+        Number(rateSlider.value).toFixed(1);
+    });
+
+    pitchSlider.addEventListener("input", () => {
+      BELLA_VOICE.setPitch(pitchSlider.value);
+      document.getElementById("pitchValue").textContent =
+        Number(pitchSlider.value).toFixed(2);
+    });
+
+    function testVoice() {
+      BELLA_VOICE.speak(
+        "Hola, Renata. Soy B.E.L.L.A. Tu sistema personal está operativo. ¿Qué necesitas hoy?"
+      );
+    }
+
+    function listenBella() {
+      BELLA_VOICE.listen(message => {
+        document.getElementById("voiceText").textContent =
+          "Te escuché: " + message;
+      });
+    }
+
+    function silenceBella() {
+      BELLA_VOICE.silence();
+      BELLA_VOICE.stop();
+      document.getElementById("voiceText").textContent =
+        "Sistema en silencio.";
+    }
   </script>
 
-  <script src="voz.js"></script>
 </body>
 </html>
