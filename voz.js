@@ -1,15 +1,36 @@
 
 /* =================================
    B.E.L.L.A. — VOICE SYSTEM
-   Version 1.0
+   Version 2.0
    ================================= */
 
 window.BELLA_VOICE = {
 
   recognition: null,
   listening: false,
+  selectedVoice: localStorage.getItem("bellaVoice") || "",
+  rate: Number(localStorage.getItem("bellaRate")) || 1,
+  pitch: Number(localStorage.getItem("bellaPitch")) || 1.05,
 
-  // SISTEMA PARA HABLAR
+  getVoices: function() {
+    return window.speechSynthesis.getVoices();
+  },
+
+  setVoice: function(name) {
+    this.selectedVoice = name;
+    localStorage.setItem("bellaVoice", name);
+  },
+
+  setRate: function(value) {
+    this.rate = Number(value);
+    localStorage.setItem("bellaRate", this.rate);
+  },
+
+  setPitch: function(value) {
+    this.pitch = Number(value);
+    localStorage.setItem("bellaPitch", this.pitch);
+  },
+
   speak: function(message) {
 
     if (!("speechSynthesis" in window)) {
@@ -19,29 +40,31 @@ window.BELLA_VOICE = {
 
     window.speechSynthesis.cancel();
 
-    const voice = new SpeechSynthesisUtterance(message);
+    const utterance = new SpeechSynthesisUtterance(message);
+    utterance.lang = "es-CL";
+    utterance.rate = this.rate;
+    utterance.pitch = this.pitch;
+    utterance.volume = 1;
 
-    voice.lang = "es-CL";
-    voice.rate = 1;
-    voice.pitch = 1.05;
-    voice.volume = 1;
+    const voices = this.getVoices();
 
-    const voices = window.speechSynthesis.getVoices();
-
-    const spanishVoice = voices.find(v =>
-      v.lang === "es-CL"
-    ) || voices.find(v =>
-      v.lang.startsWith("es")
+    const selected = voices.find(
+      v => v.name === this.selectedVoice
     );
 
-    if (spanishVoice) {
-      voice.voice = spanishVoice;
+    const spanish = voices.find(
+      v => v.lang === "es-CL"
+    ) || voices.find(
+      v => v.lang.startsWith("es")
+    );
+
+    if (selected || spanish) {
+      utterance.voice = selected || spanish;
     }
 
-    window.speechSynthesis.speak(voice);
+    window.speechSynthesis.speak(utterance);
   },
 
-  // SISTEMA PARA ESCUCHAR
   listen: function(callback) {
 
     const SpeechRecognition =
@@ -49,7 +72,7 @@ window.BELLA_VOICE = {
       window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-      alert("El reconocimiento de voz no está disponible en este navegador.");
+      alert("El reconocimiento de voz no está disponible.");
       return;
     }
 
@@ -59,22 +82,16 @@ window.BELLA_VOICE = {
     }
 
     this.recognition = new SpeechRecognition();
-
     this.recognition.lang = "es-CL";
     this.recognition.continuous = false;
     this.recognition.interimResults = false;
-    this.recognition.maxAlternatives = 1;
 
     this.recognition.onstart = () => {
       this.listening = true;
-      console.log("B.E.L.L.A. está escuchando.");
     };
 
     this.recognition.onresult = (event) => {
-      const message =
-        event.results[0][0].transcript;
-
-      console.log("Has dicho:", message);
+      const message = event.results[0][0].transcript;
 
       if (typeof callback === "function") {
         callback(message);
@@ -87,27 +104,22 @@ window.BELLA_VOICE = {
 
     this.recognition.onend = () => {
       this.listening = false;
-      console.log("Escucha finalizada.");
     };
 
     this.recognition.start();
   },
 
-  // DETENER ESCUCHA
   stop: function() {
-
     if (this.recognition) {
       this.recognition.stop();
     }
-
     this.listening = false;
   },
 
-  // DETENER VOZ
   silence: function() {
     window.speechSynthesis.cancel();
   }
 
 };
 
-console.log("B.E.L.L.A. Voice System inicializado.");
+console.log("B.E.L.L.A. Voice System 2.0 inicializado.");
