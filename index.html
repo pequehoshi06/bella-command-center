@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071713">
+  <title>B.E.L.L.A. | Command Center</title>
+
+  <style>
+    :root {
+      --bg: #071713;
+      --panel: #10251f;
+      --green: #42d99a;
+      --light: #d9f5e9;
+      --muted: #91b5a5;
+      --border: #244638;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 0%, #173d30, var(--bg) 65%);
+      color: var(--light);
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      color: var(--green);
+      font-size: 23px;
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
+
+    .status {
+      color: var(--green);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    main {
+      max-width: 950px;
+      margin: auto;
+      padding: 35px 20px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 30px 10px 40px;
+    }
+
+    .core {
+      width: 115px;
+      height: 115px;
+      margin: 0 auto 22px;
+      border: 2px solid var(--green);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 25px #42d99a55, inset 0 0 25px #42d99a22;
+      font-size: 46px;
+      color: var(--green);
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      50% { box-shadow: 0 0 40px #42d99a88, inset 0 0 30px #42d99a44; }
+    }
+
+    h1 {
+      color: var(--green);
+      letter-spacing: 5px;
+      font-size: 30px;
+      margin: 8px;
+    }
+
+    .subtitle { color: var(--muted); }
+
+    .clock {
+      font-size: 25px;
+      margin-top: 22px;
+      font-weight: bold;
+    }
+
+    .section-title {
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin: 25px 0 15px;
+    }
+
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+    }
+
+    .module {
+      background: linear-gradient(145deg, #153329, #0c201a);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 15px;
+      min-height: 115px;
+      color: var(--light);
+      text-align: left;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .module:hover {
+      border-color: var(--green);
+      transform: translateY(-3px);
+    }
+
+    .module .symbol {
+      display: block;
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .module strong { font-size: 15px; }
+
+    .module small {
+      display: block;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .message {
+      margin-top: 25px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #10251f;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .message strong { color: var(--green); }
+
+    .action {
+      background: var(--green);
+      color: #062017;
+      border: none;
+      border-radius: 30px;
+      padding: 13px 22px;
+      font-weight: bold;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    @media (min-width: 650px) {
+      .modules { grid-template-columns: repeat(3, 1fr); }
+      main { padding-top: 50px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">B.E.L.L.A.</div>
+    <div class="status">● SYSTEM ONLINE</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="core">✧</div>
+      <h1>B.E.L.L.A.</h1>
+      <p class="subtitle">Personal Intelligence System</p>
+      <p>Buenos días, Renata. Estoy a tu servicio.</p>
+      <div class="clock" id="clock">--:--:--</div>
+      <div class="subtitle" id="date"></div>
+    </section>
+
+    <div class="section-title">CENTRO DE OPERACIONES</div>
+
+    <section class="modules">
+      <button class="module" onclick="moduleInfo('Agenda')">
+        <span class="symbol">◷</span>
+        <strong>Agenda</strong>
+        <small>Organización diaria</small>
+      </button>
+
+      <button class="module" onclick="moduleInfo('Tareas')">
+        <span class="symbol">✓</span>
+        <strong>Tareas</strong>
+        <small>Pendientes y objetivos</small>
+      </button>
+
+      <button class="module" onclick="moduleInfo('Academia')">
+        <span class="symbol">⌘</span>
+        <strong>Academia</strong>
+        <small>Nutrición y estudios</small>
+      </button>
+
+      <button class="module" onclick="moduleInfo('Finanzas')">
+        <span class="symbol">◇</span>
+        <strong>Finanzas</strong>
+        <small>Presupuesto y ahorro</small>
+      </button>
+
+      <button class="module" onclick="moduleInfo('Proyectos')">
+        <span class="symbol">▤</span>
+        <strong>Proyectos</strong>
+        <small>Ideas y documentos</small>
+      </button>
+
+      <button class="module" onclick="moduleInfo('Comunicación')">
+        <span class="symbol">◎</span>
+        <strong>Comunicación</strong>
+        <small>Hablar con Bella</small>
+      </button>
+    </section>
+
+    <section class="message">
+      <strong>ESTADO DEL SISTEMA</strong>
+      <p>Sistemas visuales inicializados.</p>
+      <p>Mis módulos están preparados para su desarrollo.</p>
+      <button class="action" onclick="window.open('https://chatgpt.com/', '_blank')">
+        Abrir asistente IA
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    B.E.L.L.A. SYSTEMS · VERSION 1.0 · PERSONAL COMMAND CENTER
+  </footer>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+
+      document.getElementById("clock").textContent =
+        now.toLocaleTimeString("es-CL");
+
+      document.getElementById("date").textContent =
+        now.toLocaleDateString("es-CL", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        });
+    }
+
+    function moduleInfo(name) {
+      alert(name + ": módulo en construcción. Próximamente.");
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
