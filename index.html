@@ -3,939 +3,524 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#061510">
-<title>B.E.L.L.A. | Personal Command Center</title>
+<meta name="theme-color" content="#07130e">
+<title>B.E.L.L.A. | Personal Intelligence</title>
 
 <style>
-:root {
-  --bg:#061510;
-  --panel:#0b2119;
-  --green:#65ffb2;
-  --green2:#20c982;
-  --text:#e5fff1;
-  --muted:#8eaa9b;
-  --line:rgba(101,255,178,.2);
+* {
+  box-sizing: border-box;
 }
-
-* { box-sizing:border-box; }
 
 body {
-  margin:0;
-  min-height:100vh;
-  background:radial-gradient(ellipse at 50% 0%,#123d2b 0%,transparent 55%),var(--bg);
-  color:var(--text);
-  font-family:Arial,sans-serif;
-  overflow-x:hidden;
+  margin: 0;
+  min-height: 100vh;
+  padding: 25px 18px;
+  background:
+    radial-gradient(ellipse at top, #153b29 0%, #07130e 65%);
+  color: #e5f5eb;
+  font-family: Arial, sans-serif;
 }
-
-button,input,select { font:inherit; }
-
-button {
-  cursor:pointer;
-  color:var(--green);
-  background:rgba(32,201,130,.09);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:11px 15px;
-  transition:.2s;
-}
-
-button:hover {
-  background:rgba(32,201,130,.2);
-  border-color:var(--green);
-}
-
-.hidden,#chibi.hidden { display:none!important; }
-
-/* BIENVENIDA */
-
-#welcomeScreen {
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:25px;
-  position:relative;
-  overflow:hidden;
-}
-
-.welcome-label {
-  color:var(--green);
-  letter-spacing:5px;
-  font-size:11px;
-  margin-bottom:25px;
-}
-
-.hologram {
-  width:210px;
-  height:240px;
-  position:relative;
-  margin:10px auto 25px;
-  filter:drop-shadow(0 0 18px rgba(101,255,178,.5));
-  animation:float 4s ease-in-out infinite;
-}
-
-.holo-head {
-  position:absolute;
-  width:92px;
-  height:105px;
-  border:2px solid var(--green);
-  border-radius:48% 48% 44% 44%;
-  top:18px;
-  left:59px;
-  background:linear-gradient(145deg,rgba(101,255,178,.2),rgba(10,40,27,.7));
-  box-shadow:inset 0 0 20px rgba(101,255,178,.2),0 0 20px rgba(101,255,178,.3);
-}
-
-.holo-hair {
-  position:absolute;
-  width:112px;
-  height:115px;
-  top:8px;
-  left:49px;
-  border:3px solid var(--green);
-  border-bottom:0;
-  border-radius:55% 55% 20% 20%;
-  opacity:.8;
-}
-
-.holo-body {
-  position:absolute;
-  width:160px;
-  height:100px;
-  left:25px;
-  top:125px;
-  border:2px solid var(--green);
-  border-radius:70px 70px 15px 15px;
-  background:linear-gradient(180deg,rgba(101,255,178,.17),transparent);
-  box-shadow:inset 0 0 25px rgba(101,255,178,.2);
-}
-
-.holo-eye {
-  position:absolute;
-  top:61px;
-  width:8px;
-  height:4px;
-  border-radius:10px;
-  background:var(--green);
-  box-shadow:0 0 8px var(--green);
-}
-
-.holo-eye.left { left:82px; }
-.holo-eye.right { left:120px; }
-
-.holo-mouth {
-  position:absolute;
-  top:91px;
-  left:99px;
-  width:14px;
-  height:3px;
-  border-radius:10px;
-  background:var(--green);
-}
-
-.holo-ring {
-  position:absolute;
-  width:205px;
-  height:35px;
-  border:1px solid var(--green);
-  border-radius:50%;
-  bottom:0;
-  left:2px;
-  box-shadow:0 0 18px rgba(101,255,178,.35);
-}
-
-.welcome-title {
-  font-size:clamp(30px,8vw,48px);
-  letter-spacing:8px;
-  color:var(--green);
-  text-shadow:0 0 22px rgba(101,255,178,.5);
-  margin:5px 0;
-}
-
-#welcomeGreeting { font-size:21px; margin:15px 0 8px; }
-#welcomeClock { font-size:36px; color:var(--green); letter-spacing:3px; }
-#welcomeDate,#weather { color:var(--muted); margin:8px 0; }
-#weather { font-size:14px; }
-
-.welcome-status {
-  margin-top:22px;
-  font-size:11px;
-  letter-spacing:3px;
-  color:var(--green);
-}
-
-#activateVoice { margin-top:22px; font-size:12px; }
-
-/* ESTRUCTURA */
 
 .container {
-  width:min(100% - 30px,1000px);
-  margin:auto;
-  padding:28px 0 90px;
+  max-width: 560px;
+  margin: auto;
 }
 
 header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  border-bottom:1px solid var(--line);
-  padding-bottom:20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 25px;
 }
 
 .brand {
-  color:var(--green);
-  font-size:25px;
-  letter-spacing:5px;
-}
-
-.brand-sub {
-  color:var(--muted);
-  font-size:9px;
-  letter-spacing:2px;
-  margin-top:5px;
+  color: #a4edbd;
+  letter-spacing: 3px;
+  font-weight: bold;
 }
 
 .status {
-  color:var(--green);
-  font-size:10px;
-  letter-spacing:2px;
+  color: #78e6a4;
+  font-size: 10px;
+  letter-spacing: 1px;
 }
 
-.status::before {
-  content:"● ";
-  text-shadow:0 0 10px var(--green);
+.welcome {
+  text-align: center;
+  padding: 32px 10px 35px;
 }
 
-/* NÚCLEO */
-
-.core {
-  width:115px;
-  height:115px;
-  border:2px solid var(--green);
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:5px auto 18px;
-  font-size:42px;
-  color:var(--green);
-  box-shadow:0 0 20px rgba(101,255,178,.35),inset 0 0 20px rgba(101,255,178,.2);
-  animation:corePulse 2.5s ease-in-out infinite;
+.logo {
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 18px;
+  border: 1px solid #61d994;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9af0b8;
+  font-size: 42px;
+  box-shadow: 0 0 30px #3ba66a33;
+  background: #10251b;
 }
 
-@keyframes corePulse {
-  0%,100% {
-    transform:scale(1);
-    box-shadow:0 0 18px rgba(101,255,178,.3),inset 0 0 15px rgba(101,255,178,.15);
-  }
-  50% {
-    transform:scale(1.04);
-    box-shadow:0 0 30px rgba(101,255,178,.55),inset 0 0 25px rgba(101,255,178,.3);
-  }
+h1 {
+  font-size: 36px;
+  letter-spacing: 5px;
+  margin: 8px 0;
+  color: #b5f2c9;
 }
 
-/* CENTRO DE CONTROL */
-
-.dashboard-welcome {
-  text-align:center;
-  padding:30px 0;
+.tagline {
+  color: #77a98a;
+  font-size: 10px;
+  letter-spacing: 3px;
 }
 
-.dashboard-welcome h2 {
-  font-weight:400;
-  font-size:23px;
+.greeting {
+  margin-top: 38px;
+  font-size: 23px;
+  color: #e5f5eb;
 }
 
-.dashboard-welcome p {
-  color:var(--muted);
-  font-size:12px;
+.message {
+  color: #a8c9b3;
+  margin-top: 9px;
+  font-size: 14px;
 }
 
-#dashboardClock {
-  color:var(--green);
-  font-size:34px;
-  letter-spacing:3px;
+.clock {
+  font-size: 43px;
+  color: #91eab0;
+  font-weight: bold;
+  margin-top: 28px;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
 }
 
-#dashboardDate {
-  color:var(--muted);
-  font-size:12px;
+.date {
+  color: #83ad91;
+  font-size: 13px;
+  margin-top: 7px;
+  text-transform: capitalize;
+}
+
+.line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #35684a, transparent);
+  margin: 20px 0 28px;
 }
 
 .section-title {
-  font-size:11px;
-  letter-spacing:3px;
-  color:var(--green);
-  margin:25px 0 15px;
+  color: #8de4aa;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
 }
 
 .modules {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 11px;
 }
 
 .module {
-  background:linear-gradient(145deg,#10291e,#091a13);
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:20px 15px;
-  min-height:115px;
-  cursor:pointer;
-  transition:.2s;
+  background: #10251b;
+  border: 1px solid #28583d;
+  border-radius: 13px;
+  padding: 18px 12px;
+  color: #d9f1e1;
+  text-align: center;
+  font-size: 13px;
+  transition: .2s;
 }
 
-.module:hover {
-  transform:translateY(-3px);
-  border-color:var(--green);
+.module .symbol {
+  display: block;
+  font-size: 23px;
+  margin-bottom: 9px;
+  color: #83e2a3;
 }
 
-.module-icon { font-size:23px; margin-bottom:12px; }
-.module h3 { font-size:14px; margin:0 0 6px; }
-.module p { font-size:10px; color:var(--muted); margin:0; }
-
-/* PANELES */
-
-.assistant-panel,.settings-panel {
-  margin-top:22px;
-  padding:20px;
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:16px;
+.module:active {
+  background: #1c4630;
 }
 
-.assistant-panel h3,.settings-panel h3 {
-  color:var(--green);
-  font-size:14px;
-  letter-spacing:2px;
+.assistant {
+  margin-top: 30px;
+  background: #10251b;
+  border: 1px solid #28583d;
+  border-radius: 16px;
+  padding: 19px;
 }
 
-.assistant-panel p,.settings-description {
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.6;
+.assistant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.actions {
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin-top:15px;
+.assistant-name {
+  color: #a5edbd;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-/* CONFIGURACIÓN DE VOZ */
-
-.page-heading { margin:28px 0 20px; }
-
-.page-heading h2 {
-  font-size:23px;
-  font-weight:400;
-  margin:0 0 8px;
+.online {
+  font-size: 10px;
+  color: #78e6a4;
 }
 
-.page-heading p {
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.5;
-  margin:0;
+.assistant-description {
+  color: #89aa94;
+  font-size: 12px;
+  margin: 12px 0 17px;
 }
 
-.back-button {
-  margin-top:20px;
-  margin-bottom:5px;
+button, select {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #39734e;
+  background: #193b29;
+  color: white;
+  padding: 13px;
+  font-size: 13px;
 }
 
-.settings-panel label {
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  margin:18px 0 8px;
+button {
+  cursor: pointer;
 }
 
-.settings-panel select {
-  width:100%;
-  padding:12px;
-  background:#071810;
-  border:1px solid var(--line);
-  border-radius:8px;
-  color:var(--text);
+.main-button {
+  background: #286441;
+  border: none;
+  font-weight: bold;
 }
 
-.settings-panel input[type="range"] {
-  width:100%;
-  accent-color:var(--green);
+.button-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 10px;
 }
 
-.value-display {
-  color:var(--green);
-  font-size:11px;
-  text-align:right;
+.voice-section {
+  margin-top: 28px;
+  padding: 20px;
+  border-radius: 15px;
+  background: #0d2017;
+  border: 1px solid #244b33;
 }
 
-.info-note {
-  border-left:2px solid var(--green);
-  padding:10px 12px;
-  margin-top:18px;
-  background:rgba(101,255,178,.05);
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.6;
+label {
+  display: block;
+  font-size: 12px;
+  color: #b6d8c0;
+  margin: 16px 0 8px;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: #78e6a4;
+}
+
+.value {
+  color: #8de4aa;
+}
+
+#voiceText {
+  color: #a4edbd;
+  font-size: 12px;
+  margin-top: 14px;
+  min-height: 18px;
 }
 
 footer {
-  text-align:center;
-  color:var(--muted);
-  font-size:10px;
-  margin-top:35px;
-  letter-spacing:2px;
+  color: #54765e;
+  font-size: 10px;
+  text-align: center;
+  margin: 30px 0 10px;
+  letter-spacing: 2px;
 }
 
-/* CHIBI */
-
-#chibi {
-  position:fixed;
-  z-index:20;
-  right:14px;
-  bottom:14px;
-  width:100px;
-  height:125px;
-  background:transparent;
-  border:none;
-  padding:0;
-  filter:drop-shadow(0 0 9px rgba(101,255,178,.35));
-  animation:float 3s ease-in-out infinite;
-}
-
-.chibi-head {
-  position:absolute;
-  top:5px;
-  left:24px;
-  width:53px;
-  height:55px;
-  border:2px solid var(--green);
-  border-radius:45% 45% 48% 48%;
-  background:linear-gradient(145deg,#1b4734,#071b12);
-}
-
-.chibi-hair {
-  position:absolute;
-  top:0;
-  left:19px;
-  width:63px;
-  height:57px;
-  border:3px solid var(--green);
-  border-bottom:0;
-  border-radius:50% 50% 20% 20%;
-  pointer-events:none;
-}
-
-.chibi-eye {
-  position:absolute;
-  top:27px;
-  width:5px;
-  height:7px;
-  background:var(--green);
-  border-radius:50%;
-  box-shadow:0 0 5px var(--green);
-}
-
-.chibi-eye.left { left:38px; }
-.chibi-eye.right { left:58px; }
-
-.chibi-mouth {
-  position:absolute;
-  top:43px;
-  left:48px;
-  width:8px;
-  height:2px;
-  background:var(--green);
-  border-radius:5px;
-}
-
-.chibi-body {
-  position:absolute;
-  top:62px;
-  left:26px;
-  width:50px;
-  height:45px;
-  border:2px solid var(--green);
-  border-radius:18px 18px 12px 12px;
-  background:linear-gradient(145deg,#17432e,#071b12);
-}
-
-.chibi-core {
-  position:absolute;
-  top:77px;
-  left:46px;
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 12px var(--green);
-}
-
-#chibi.speaking .chibi-mouth {
-  animation:talk .18s infinite alternate;
-}
-
-#chibi.blink .chibi-eye { height:1px; }
-
-@keyframes float {
-  0%,100% { transform:translateY(0); }
-  50% { transform:translateY(-8px); }
-}
-
-@keyframes talk {
-  from { height:2px; }
-  to { height:8px; }
-}
-
-@media (min-width:700px) {
-  .modules { grid-template-columns:repeat(3,1fr); }
-  #chibi { right:30px; bottom:25px; }
+@media (max-width: 360px) {
+  h1 { font-size: 29px; }
+  .clock { font-size: 36px; }
 }
 </style>
 </head>
 
 <body>
+<main class="container">
 
-<!-- BIENVENIDA -->
+<header>
+  <div class="brand">B.E.L.L.A.</div>
+  <div class="status">● SYSTEM ONLINE</div>
+</header>
 
-<section id="welcomeScreen">
-  <div class="welcome-label">PERSONAL INTELLIGENCE SYSTEM</div>
+<section class="welcome">
 
-  <div class="hologram" aria-label="Avatar holográfico de B.E.L.L.A.">
-    <div class="holo-hair"></div>
-    <div class="holo-head"></div>
-    <div class="holo-eye left"></div>
-    <div class="holo-eye right"></div>
-    <div class="holo-mouth"></div>
-    <div class="holo-body"></div>
-    <div class="holo-ring"></div>
+  <div class="logo">✧</div>
+
+  <h1>B.E.L.L.A.</h1>
+  <div class="tagline">PERSONAL INTELLIGENCE SYSTEM</div>
+
+  <div class="greeting" id="greeting">
+    Hola, Renata.
   </div>
 
-  <div class="welcome-title" id="welcomeTitle">B.E.L.L.A.</div>
-  <div id="welcomeGreeting">Bienvenida</div>
-  <div id="welcomeClock">00:00:00</div>
-  <div id="welcomeDate"></div>
-  <div id="weather">Consultando clima de La Serena...</div>
+  <div class="message" id="greetingMessage">
+    Estoy a tu servicio.
+  </div>
 
-  <div class="welcome-status">SISTEMA INICIANDO</div>
+  <div class="clock" id="clock">--:--:--</div>
+  <div class="date" id="date">Cargando fecha...</div>
 
-  <button id="activateVoice" onclick="activateWelcome()">
-    ACTIVAR VOZ Y CONTINUAR
-  </button>
 </section>
 
-<!-- CENTRO DE CONTROL -->
+<div class="line"></div>
 
-<main id="dashboardScreen" class="container hidden">
-
-  <header>
-    <div>
-      <div class="brand bellaName">B.E.L.L.A.</div>
-      <div class="brand-sub">PERSONAL COMMAND CENTER</div>
-    </div>
-    <div class="status">SISTEMA ACTIVO</div>
-  </header>
-
-  <section class="dashboard-welcome">
-    <div class="core">✧</div>
-    <h2 id="dashboardGreeting">Buenas noches</h2>
-    <div id="dashboardClock">00:00:00</div>
-    <div id="dashboardDate"></div>
-  </section>
-
+<section>
   <div class="section-title">CENTRO DE CONTROL</div>
 
-  <section class="modules">
-
-    <div class="module" onclick="openModule('Agenda')">
-      <div class="module-icon">◷</div>
-      <h3>Agenda</h3>
-      <p>Organización y calendario</p>
+  <div class="modules">
+    <div class="module">
+      <span class="symbol">◷</span>
+      Agenda
     </div>
 
-    <div class="module" onclick="openModule('Tareas')">
-      <div class="module-icon">✓</div>
-      <h3>Tareas</h3>
-      <p>Pendientes y actividades</p>
+    <div class="module">
+      <span class="symbol">✓</span>
+      Tareas
     </div>
 
-    <div class="module" onclick="openModule('Academia')">
-      <div class="module-icon">⌘</div>
-      <h3>Academia</h3>
-      <p>Estudio y proyectos académicos</p>
+    <div class="module">
+      <span class="symbol">⌘</span>
+      Academia
     </div>
 
-    <div class="module" onclick="openModule('Finanzas')">
-      <div class="module-icon">$</div>
-      <h3>Finanzas</h3>
-      <p>Control y planificación</p>
+    <div class="module">
+      <span class="symbol">◇</span>
+      Finanzas
     </div>
 
-    <div class="module" onclick="openModule('Proyectos')">
-      <div class="module-icon">✧</div>
-      <h3>Proyectos</h3>
-      <p>Ideas y desarrollo</p>
+    <div class="module">
+      <span class="symbol">▤</span>
+      Proyectos
     </div>
 
-    <div class="module" onclick="openSettings()">
-      <div class="module-icon">⚙</div>
-      <h3>Configuración</h3>
-      <p>Ajustes de voz del asistente</p>
+    <div class="module">
+      <span class="symbol">✧</span>
+      Configuración
     </div>
+  </div>
+</section>
 
-  </section>
+<section class="assistant">
 
-  <section class="assistant-panel">
-    <h3>ASISTENTE <span class="bellaName">B.E.L.L.A.</span></h3>
+  <div class="assistant-header">
+    <div class="assistant-name">B.E.L.L.A.</div>
+    <div class="online">● ONLINE</div>
+  </div>
 
-    <p id="assistantMessage">
-      Sistema de voz disponible. La conexión con el asistente inteligente está pendiente.
-    </p>
+  <div class="assistant-description">
+    Sistema de inteligencia personal · Esperando instrucciones.
+  </div>
 
-    <div class="actions">
-      <button onclick="openAssistant()">Abrir asistente IA</button>
-      <button onclick="listenBella()">Hablar</button>
-      <button onclick="testVoice()">Probar voz</button>
-    </div>
-  </section>
-
-  <footer>B.E.L.L.A. SYSTEM · LA SERENA · CHILE</footer>
-
-</main>
-
-<!-- CONFIGURACIÓN DE VOZ -->
-
-<main id="voiceSettingsScreen" class="container hidden">
-
-  <header>
-    <div>
-      <div class="brand bellaName">B.E.L.L.A.</div>
-      <div class="brand-sub">VOICE CONTROL CENTER</div>
-    </div>
-    <div class="status">AJUSTES DE VOZ</div>
-  </header>
-
-  <button class="back-button" onclick="backToDashboard()">
-    ← Volver al centro de control
+  <button class="main-button" onclick="openAssistant()">
+    ✧ Abrir asistente IA
   </button>
 
-  <section class="page-heading">
-    <h2>Configuración de voz</h2>
-    <p>Ajusta cómo suena tu asistente. Puedes probar los cambios cuando quieras.</p>
-  </section>
+  <div class="button-row">
+    <button onclick="listenBella()">🎙️ Hablar</button>
+    <button onclick="testVoice()">🔊 Probar voz</button>
+  </div>
 
-  <section class="settings-panel">
+  <div id="voiceText">Sistema preparado.</div>
 
-    <h3>♫ PERSONALIZA MI VOZ</h3>
+</section>
 
-    <label for="voiceSelect">Voz seleccionada</label>
-    <select id="voiceSelect">
-      <option value="">Cargando voces...</option>
-    </select>
+<section class="voice-section">
 
-    <label for="rate">Velocidad de voz</label>
-    <input id="rate" type="range" min="0.7" max="1.3"
-      step="0.1" value="1">
-    <div class="value-display" id="rateValue">1.0</div>
+  <div class="section-title">VOICE CONTROL 2.0</div>
 
-    <label for="pitch">Tono de voz</label>
-    <input id="pitch" type="range" min="0.7" max="1.5"
-      step="0.1" value="1">
-    <div class="value-display" id="pitchValue">1.0</div>
+  <label for="voiceSelect">Seleccionar voz</label>
+  <select id="voiceSelect">
+    <option value="">Cargando voces...</option>
+  </select>
 
-    <div class="actions">
-      <button onclick="testVoice()">🔊 Probar mi voz</button>
-      <button onclick="silenceBella()">Silenciar</button>
-    </div>
+  <label for="rate">
+    Velocidad: <span class="value" id="rateValue">1.0</span>
+  </label>
+  <input type="range" id="rate"
+    min="0.7" max="1.3" step="0.1" value="1">
 
-    <div class="info-note">
-      Tus preferencias se guardan automáticamente en este navegador y dispositivo.
-    </div>
+  <label for="pitch">
+    Tono: <span class="value" id="pitchValue">1.05</span>
+  </label>
+  <input type="range" id="pitch"
+    min="0.7" max="1.4" step="0.05" value="1.05">
 
-  </section>
+  <button onclick="silenceBella()" style="margin-top:18px">
+    Silenciar B.E.L.L.A.
+  </button>
 
-  <footer>B.E.L.L.A. SYSTEM · VOICE CONTROL</footer>
+</section>
+
+<footer>
+  B.E.L.L.A. SYSTEMS · PERSONAL COMMAND CENTER
+</footer>
 
 </main>
-
-<!-- CHIBI -->
-
-<button id="chibi" class="hidden"
-  aria-label="Hablar con B.E.L.L.A."
-  onclick="listenBella()">
-
-  <div class="chibi-hair"></div>
-  <div class="chibi-head"></div>
-  <div class="chibi-eye left"></div>
-  <div class="chibi-eye right"></div>
-  <div class="chibi-mouth"></div>
-  <div class="chibi-body"></div>
-  <div class="chibi-core"></div>
-
-</button>
 
 <script src="voz.js"></script>
 
 <script>
-const TIME_ZONE = "America/Santiago";
-let welcomeFinished = false;
-let lastWeatherDescription = "El clima no está disponible";
-let currentScreen = "welcomeScreen";
-
-/* IDENTIDAD */
-
-function assistantName() {
-  return localStorage.getItem("bella_name") || "B.E.L.L.A.";
-}
-
-function updateAssistantName() {
-  const name = assistantName();
-
-  document.querySelectorAll(".bellaName").forEach(element => {
-    element.textContent = name;
-  });
-
-  document.getElementById("welcomeTitle").textContent = name;
-  document.title = name + " | Personal Command Center";
-}
-
-/* RELOJ Y FECHA */
-
-function getGreeting() {
-  const hour = Number(
-    new Intl.DateTimeFormat("es-CL", {
-      hour:"2-digit",
-      hour12:false,
-      timeZone:TIME_ZONE
-    }).format(new Date())
-  );
-
-  if (hour >= 5 && hour < 12) return "Buenos días";
-  if (hour >= 12 && hour < 20) return "Buenas tardes";
-  return "Buenas noches";
-}
-
-function getCurrentTime() {
-  return new Intl.DateTimeFormat("es-CL", {
-    hour:"2-digit",
-    minute:"2-digit",
-    hour12:false,
-    timeZone:TIME_ZONE
-  }).format(new Date());
-}
-
-function getCurrentDate() {
-  return new Intl.DateTimeFormat("es-CL", {
-    weekday:"long",
-    day:"numeric",
-    month:"long",
-    year:"numeric",
-    timeZone:TIME_ZONE
-  }).format(new Date());
-}
+// RELOJ Y SALUDO DE CHILE
 
 function updateClock() {
   const now = new Date();
 
   const time = new Intl.DateTimeFormat("es-CL", {
-    hour:"2-digit",
-    minute:"2-digit",
-    second:"2-digit",
-    hour12:false,
-    timeZone:TIME_ZONE
+    timeZone: "America/Santiago",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
   }).format(now);
 
-  const date = getCurrentDate();
-  const greeting = getGreeting();
+  const date = new Intl.DateTimeFormat("es-CL", {
+    timeZone: "America/Santiago",
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  }).format(now);
 
-  document.getElementById("welcomeClock").textContent = time;
-  document.getElementById("dashboardClock").textContent = time;
-  document.getElementById("welcomeDate").textContent = date;
-  document.getElementById("dashboardDate").textContent = date;
+  document.getElementById("clock").textContent = time;
+  document.getElementById("date").textContent = date;
 
-  document.getElementById("welcomeGreeting").textContent =
-    greeting + ", Renata";
+  const hour = Number(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Santiago",
+      hour: "numeric",
+      hour12: false
+    }).format(now)
+  );
 
-  document.getElementById("dashboardGreeting").textContent =
-    greeting + ", Renata";
+  let greeting;
+  let message;
+
+  if (hour >= 5 && hour < 12) {
+    greeting = "Buenos días, Renata.";
+    message = "Espero que hayas descansado. Estoy a tu servicio.";
+  } else if (hour >= 12 && hour < 20) {
+    greeting = "Buenas tardes, Renata.";
+    message = "Espero que tu día vaya bien. Estoy a tu servicio.";
+  } else {
+    greeting = "Buenas noches, Renata.";
+    message = "¿Lista para continuar? Estoy a tu servicio.";
+  }
+
+  document.getElementById("greeting").textContent = greeting;
+  document.getElementById("greetingMessage").textContent = message;
 }
 
 updateClock();
-setInterval(updateClock,1000);
+setInterval(updateClock, 1000);
 
-/* CLIMA DE LA SERENA */
 
-async function updateWeather() {
-  const weather = document.getElementById("weather");
+// CONFIGURACIÓN DE VOZ
 
-  try {
-    const url =
-      "https://api.open-meteo.com/v1/forecast" +
-      "?latitude=-29.9027&longitude=-71.2519" +
-      "&current=temperature_2m,weather_code" +
-      "&timezone=America%2FSantiago";
+const voiceSelect = document.getElementById("voiceSelect");
+const rateSlider = document.getElementById("rate");
+const pitchSlider = document.getElementById("pitch");
 
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("Weather unavailable");
+function loadVoiceOptions() {
+  if (!window.BELLA_VOICE) return;
 
-    const data = await response.json();
-    const temp = Math.round(data.current.temperature_2m);
-    const code = data.current.weather_code;
+  const voices = BELLA_VOICE.getVoices();
+  const spanishVoices = voices.filter(v =>
+    v.lang.toLowerCase().startsWith("es")
+  );
 
-    const conditions = {
-      0:"Despejado ☀️",
-      1:"Mayormente despejado 🌤️",
-      2:"Parcialmente nublado ⛅",
-      3:"Nublado ☁️",
-      45:"Neblina 🌫️",
-      48:"Neblina 🌫️",
-      51:"Llovizna 🌦️",
-      53:"Llovizna 🌦️",
-      55:"Llovizna 🌦️",
-      61:"Lluvia 🌧️",
-      63:"Lluvia 🌧️",
-      65:"Lluvia intensa 🌧️",
-      80:"Chubascos 🌦️",
-      81:"Chubascos 🌦️",
-      82:"Chubascos intensos 🌧️",
-      95:"Tormenta ⛈️"
-    };
+  const previous = BELLA_VOICE.selectedVoice;
+  voiceSelect.innerHTML = "";
 
-    const condition = conditions[code] || "Condición variable";
-
-    lastWeatherDescription = temp + " grados, " + condition;
-    weather.textContent =
-      "📍 La Serena · " + temp + "°C · " + condition;
-
-  } catch (error) {
-    lastWeatherDescription = "El clima no está disponible en este momento";
-    weather.textContent = "📍 La Serena · Clima no disponible";
-  }
-}
-
-updateWeather();
-setInterval(updateWeather,15*60*1000);
-
-/* NAVEGACIÓN */
-
-function hideAllScreens() {
-  document.getElementById("welcomeScreen").classList.add("hidden");
-  document.getElementById("dashboardScreen").classList.add("hidden");
-  document.getElementById("voiceSettingsScreen").classList.add("hidden");
-}
-
-function showScreen(id) {
-  hideAllScreens();
-  document.getElementById(id).classList.remove("hidden");
-  currentScreen = id;
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function showDashboard() {
-  if (welcomeFinished) return;
-
-  welcomeFinished = true;
-  showScreen("dashboardScreen");
-  document.getElementById("chibi").classList.remove("hidden");
-}
-
-function backToDashboard() {
-  showScreen("dashboardScreen");
-}
-
-function openSettings() {
-  showScreen("voiceSettingsScreen");
-  loadVoiceSettings();
-}
-
-function activateWelcome() {
-  if (window.BELLA_VOICE) {
-    speakBella(
-      getGreeting() + ", Renata. Soy " + assistantName() +
-      ". Tu sistema personal está operativo."
-    );
-  }
-
-  document.getElementById("activateVoice").textContent =
-    "CONTINUAR AL CENTRO DE CONTROL";
-
-  document.getElementById("activateVoice").onclick = showDashboard;
-
-  setTimeout(showDashboard,4500);
-}
-
-/* CHIBI */
-
-function animateSpeaking() {
-  const chibi = document.getElementById("chibi");
-  chibi.classList.add("speaking");
-
-  setTimeout(() => {
-    chibi.classList.remove("speaking");
-  },3500);
-}
-
-setInterval(() => {
-  const chibi = document.getElementById("chibi");
-
-  if (chibi.classList.contains("hidden")) return;
-
-  chibi.classList.add("blink");
-  setTimeout(() => chibi.classList.remove("blink"),180);
-},3500);
-
-/* MENSAJES Y VOZ */
-
-function setAssistantMessage(message) {
-  document.getElementById("assistantMessage").textContent = message;
-}
-
-function speakBella(message) {
-  if (!window.BELLA_VOICE) {
-    setAssistantMessage("El módulo de voz no está disponible.");
+  if (spanishVoices.length === 0) {
+    voiceSelect.innerHTML =
+      '<option value="">Voz predeterminada del dispositivo</option>';
     return;
   }
 
-  window.BELLA_VOICE.speak(message);
-  animateSpeaking();
+  spanishVoices.forEach(voice => {
+    const option = document.createElement("option");
+    option.value = voice.name;
+    option.textContent = voice.name + " (" + voice.lang + ")";
+    voiceSelect.appendChild(option);
+  });
+
+  if (previous) voiceSelect.value = previous;
 }
 
+if (window.speechSynthesis) {
+  window.speechSynthesis.onvoiceschanged = loadVoiceOptions;
+}
+
+loadVoiceOptions();
+
+rateSlider.value = BELLA_VOICE.rate;
+pitchSlider.value = BELLA_VOICE.pitch;
+
+document.getElementById("rateValue").textContent =
+  Number(rateSlider.value).toFixed(1);
+
+document.getElementById("pitchValue").textContent =
+  Number(pitchSlider.value).toFixed(2);
+
+voiceSelect.addEventListener("change", () => {
+  BELLA_VOICE.setVoice(voiceSelect.value);
+});
+
+rateSlider.addEventListener("input", () => {
+  BELLA_VOICE.setRate(rateSlider.value);
+  document.getElementById("rateValue").textContent =
+    Number(rateSlider.value).toFixed(1);
+});
+
+pitchSlider.addEventListener("input", () => {
+  BELLA_VOICE.setPitch(pitchSlider.value);
+  document.getElementById("pitchValue").textContent =
+    Number(pitchSlider.value).toFixed(2);
+});
+
 function testVoice() {
-  speakBella(
-    "Hola, Renata. Soy " + assistantName() +
-    ". Tu sistema personal está operativo. Estoy a tu servicio."
+  BELLA_VOICE.speak(
+    "Hola, Renata. Soy B.E.L.L.A. Tu sistema personal está operativo. Estoy a tu servicio."
   );
 }
 
-function silenceBella() {
-  if (window.BELLA_VOICE) {
-    window.BELLA_VOICE.stop();
-    window.BELLA_VOICE.silence();
-  }
-
-  document.getElementById("chibi").classList.remove("speaking");
-  setAssistantMessage("Voz silenciada.");
+function listenBella() {
+  BELLA_VOICE.listen(message => {
+    document.getElementById("voiceText").textContent =
+      "Te escuché: " + message;
+  });
 }
 
-/* RECONOCIMIENTO DE VOZ */
+function silenceBella() {
+  BELLA_VOICE.silence();
+  BELLA_VOICE.stop();
 
-function listenBella() {
-  if (!window.BELLA_VOICE) {
-    setAssistantMessage("El módulo de voz no está disponible.");
-    return;
-  }
+  document.getElementById("voiceText").textContent =
+    "Sistema en silencio.";
+}
 
-  setAssistantMessage("Te estoy escuchando...");
+function openAssistant() {
+  document.getElementById("voiceText").textContent =
+    "El módulo de conversación IA está pendiente de conexión.";
+}
+</script>
 
-  window.BELLA_VOICE.listen((message) => {
-    setAssistantMessage("Te escuché decir: " + message);
-
-    const response =
-      "He recibid
+</body>
+</html>
