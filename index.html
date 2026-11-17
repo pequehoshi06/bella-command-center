@@ -1,3 +1,4 @@
+HTML
 
 <!DOCTYPE html>
 <html lang="es">
@@ -9,623 +10,502 @@
 
 <style>
 :root {
-  --bg: #061510;
-  --panel: #0b2119;
-  --green: #65ffb2;
-  --green2: #20c982;
-  --text: #e5fff1;
-  --muted: #8eaa9b;
-  --line: rgba(101,255,178,.2);
+  --bg:#061510;
+  --panel:#0b2119;
+  --green:#65ffb2;
+  --green2:#20c982;
+  --text:#e5fff1;
+  --muted:#8eaa9b;
+  --line:rgba(101,255,178,.2);
 }
 
-* { box-sizing: border-box; }
+* { box-sizing:border-box; }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(ellipse at 50% 0%, #123d2b 0%, transparent 55%),
-    var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
+  margin:0;
+  min-height:100vh;
+  background:radial-gradient(ellipse at 50% 0%,#123d2b 0%,transparent 55%),var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  overflow-x:hidden;
 }
 
-button, input, select { font: inherit; }
+button,input,select { font:inherit; }
 
 button {
-  cursor: pointer;
-  color: var(--green);
-  background: rgba(32,201,130,.09);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 11px 15px;
-  transition: .2s;
+  cursor:pointer;
+  color:var(--green);
+  background:rgba(32,201,130,.09);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px 15px;
+  transition:.2s;
 }
 
 button:hover {
-  background: rgba(32,201,130,.2);
-  border-color: var(--green);
+  background:rgba(32,201,130,.2);
+  border-color:var(--green);
 }
 
-.hidden,
-#chibi.hidden {
-  display: none !important;
-}
+.hidden,#chibi.hidden { display:none!important; }
 
 /* BIENVENIDA */
 
 #welcomeScreen {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 25px;
-  position: relative;
-  overflow: hidden;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:25px;
+  position:relative;
+  overflow:hidden;
 }
 
 .welcome-label {
-  color: var(--green);
-  letter-spacing: 5px;
-  font-size: 11px;
-  margin-bottom: 25px;
+  color:var(--green);
+  letter-spacing:5px;
+  font-size:11px;
+  margin-bottom:25px;
 }
 
 .hologram {
-  width: 210px;
-  height: 240px;
-  position: relative;
-  margin: 10px auto 25px;
-  filter: drop-shadow(0 0 18px rgba(101,255,178,.5));
-  animation: float 4s ease-in-out infinite;
+  width:210px;
+  height:240px;
+  position:relative;
+  margin:10px auto 25px;
+  filter:drop-shadow(0 0 18px rgba(101,255,178,.5));
+  animation:float 4s ease-in-out infinite;
 }
 
 .holo-head {
-  position: absolute;
-  width: 92px;
-  height: 105px;
-  border: 2px solid var(--green);
-  border-radius: 48% 48% 44% 44%;
-  top: 18px;
-  left: 59px;
-  background: linear-gradient(145deg, rgba(101,255,178,.2), rgba(10,40,27,.7));
-  box-shadow: inset 0 0 20px rgba(101,255,178,.2), 0 0 20px rgba(101,255,178,.3);
+  position:absolute;
+  width:92px;
+  height:105px;
+  border:2px solid var(--green);
+  border-radius:48% 48% 44% 44%;
+  top:18px;
+  left:59px;
+  background:linear-gradient(145deg,rgba(101,255,178,.2),rgba(10,40,27,.7));
+  box-shadow:inset 0 0 20px rgba(101,255,178,.2),0 0 20px rgba(101,255,178,.3);
 }
 
 .holo-hair {
-  position: absolute;
-  width: 112px;
-  height: 115px;
-  top: 8px;
-  left: 49px;
-  border: 3px solid var(--green);
-  border-bottom: 0;
-  border-radius: 55% 55% 20% 20%;
-  opacity: .8;
+  position:absolute;
+  width:112px;
+  height:115px;
+  top:8px;
+  left:49px;
+  border:3px solid var(--green);
+  border-bottom:0;
+  border-radius:55% 55% 20% 20%;
+  opacity:.8;
 }
 
 .holo-body {
-  position: absolute;
-  width: 160px;
-  height: 100px;
-  left: 25px;
-  top: 125px;
-  border: 2px solid var(--green);
-  border-radius: 70px 70px 15px 15px;
-  background: linear-gradient(180deg, rgba(101,255,178,.17), transparent);
-  box-shadow: inset 0 0 25px rgba(101,255,178,.2);
+  position:absolute;
+  width:160px;
+  height:100px;
+  left:25px;
+  top:125px;
+  border:2px solid var(--green);
+  border-radius:70px 70px 15px 15px;
+  background:linear-gradient(180deg,rgba(101,255,178,.17),transparent);
+  box-shadow:inset 0 0 25px rgba(101,255,178,.2);
 }
 
 .holo-eye {
-  position: absolute;
-  top: 61px;
-  width: 8px;
-  height: 4px;
-  border-radius: 10px;
-  background: var(--green);
-  box-shadow: 0 0 8px var(--green);
+  position:absolute;
+  top:61px;
+  width:8px;
+  height:4px;
+  border-radius:10px;
+  background:var(--green);
+  box-shadow:0 0 8px var(--green);
 }
 
-.holo-eye.left { left: 82px; }
-.holo-eye.right { left: 120px; }
+.holo-eye.left { left:82px; }
+.holo-eye.right { left:120px; }
 
 .holo-mouth {
-  position: absolute;
-  top: 91px;
-  left: 99px;
-  width: 14px;
-  height: 3px;
-  border-radius: 10px;
-  background: var(--green);
+  position:absolute;
+  top:91px;
+  left:99px;
+  width:14px;
+  height:3px;
+  border-radius:10px;
+  background:var(--green);
 }
 
 .holo-ring {
-  position: absolute;
-  width: 205px;
-  height: 35px;
-  border: 1px solid var(--green);
-  border-radius: 50%;
-  bottom: 0;
-  left: 2px;
-  box-shadow: 0 0 18px rgba(101,255,178,.35);
+  position:absolute;
+  width:205px;
+  height:35px;
+  border:1px solid var(--green);
+  border-radius:50%;
+  bottom:0;
+  left:2px;
+  box-shadow:0 0 18px rgba(101,255,178,.35);
 }
 
 .welcome-title {
-  font-size: clamp(30px, 8vw, 48px);
-  letter-spacing: 8px;
-  color: var(--green);
-  text-shadow: 0 0 22px rgba(101,255,178,.5);
-  margin: 5px 0;
+  font-size:clamp(30px,8vw,48px);
+  letter-spacing:8px;
+  color:var(--green);
+  text-shadow:0 0 22px rgba(101,255,178,.5);
+  margin:5px 0;
 }
 
-#welcomeGreeting {
-  font-size: 21px;
-  margin: 15px 0 8px;
-}
-
-#welcomeClock {
-  font-size: 36px;
-  color: var(--green);
-  font-weight: 300;
-  letter-spacing: 3px;
-}
-
-#welcomeDate, #weather {
-  color: var(--muted);
-  margin: 8px 0;
-}
-
-#weather { font-size: 14px; }
+#welcomeGreeting { font-size:21px; margin:15px 0 8px; }
+#welcomeClock { font-size:36px; color:var(--green); letter-spacing:3px; }
+#welcomeDate,#weather { color:var(--muted); margin:8px 0; }
+#weather { font-size:14px; }
 
 .welcome-status {
-  margin-top: 22px;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--green);
+  margin-top:22px;
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--green);
 }
 
-#activateVoice {
-  margin-top: 22px;
-  font-size: 12px;
-}
+#activateVoice { margin-top:22px; font-size:12px; }
 
-/* ESTRUCTURA GENERAL */
+/* ESTRUCTURA */
 
 .container {
-  width: min(100% - 30px, 1000px);
-  margin: auto;
-  padding: 28px 0 90px;
+  width:min(100% - 30px,1000px);
+  margin:auto;
+  padding:28px 0 90px;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:20px;
 }
 
 .brand {
-  color: var(--green);
-  font-size: 25px;
-  letter-spacing: 5px;
+  color:var(--green);
+  font-size:25px;
+  letter-spacing:5px;
 }
 
 .brand-sub {
-  color: var(--muted);
-  font-size: 9px;
-  letter-spacing: 2px;
-  margin-top: 5px;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:2px;
+  margin-top:5px;
 }
 
 .status {
-  color: var(--green);
-  font-size: 10px;
-  letter-spacing: 2px;
+  color:var(--green);
+  font-size:10px;
+  letter-spacing:2px;
 }
 
 .status::before {
-  content: "● ";
-  text-shadow: 0 0 10px var(--green);
+  content:"● ";
+  text-shadow:0 0 10px var(--green);
 }
 
-/* NÚCLEO IA */
+/* NÚCLEO */
 
 .core {
-  width: 115px;
-  height: 115px;
-  border: 2px solid var(--green);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 5px auto 18px;
-  font-size: 42px;
-  color: var(--green);
-  box-shadow:
-    0 0 20px rgba(101,255,178,.35),
-    inset 0 0 20px rgba(101,255,178,.2);
-  animation: corePulse 2.5s ease-in-out infinite;
+  width:115px;
+  height:115px;
+  border:2px solid var(--green);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:5px auto 18px;
+  font-size:42px;
+  color:var(--green);
+  box-shadow:0 0 20px rgba(101,255,178,.35),inset 0 0 20px rgba(101,255,178,.2);
+  animation:corePulse 2.5s ease-in-out infinite;
 }
 
 @keyframes corePulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 18px rgba(101,255,178,.3),
-                inset 0 0 15px rgba(101,255,178,.15);
+  0%,100% {
+    transform:scale(1);
+    box-shadow:0 0 18px rgba(101,255,178,.3),inset 0 0 15px rgba(101,255,178,.15);
   }
   50% {
-    transform: scale(1.04);
-    box-shadow: 0 0 30px rgba(101,255,178,.55),
-                inset 0 0 25px rgba(101,255,178,.3);
+    transform:scale(1.04);
+    box-shadow:0 0 30px rgba(101,255,178,.55),inset 0 0 25px rgba(101,255,178,.3);
   }
 }
 
 /* CENTRO DE CONTROL */
 
 .dashboard-welcome {
-  text-align: center;
-  padding: 30px 0;
+  text-align:center;
+  padding:30px 0;
 }
 
 .dashboard-welcome h2 {
-  font-weight: 400;
-  font-size: 23px;
+  font-weight:400;
+  font-size:23px;
 }
 
 .dashboard-welcome p {
-  color: var(--muted);
-  font-size: 12px;
+  color:var(--muted);
+  font-size:12px;
 }
 
 #dashboardClock {
-  color: var(--green);
-  font-size: 34px;
-  letter-spacing: 3px;
+  color:var(--green);
+  font-size:34px;
+  letter-spacing:3px;
 }
 
 #dashboardDate {
-  color: var(--muted);
-  font-size: 12px;
+  color:var(--muted);
+  font-size:12px;
 }
 
 .section-title {
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--green);
-  margin: 25px 0 15px;
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--green);
+  margin:25px 0 15px;
 }
 
 .modules {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
 .module {
-  background: linear-gradient(145deg, #10291e, #091a13);
-  border: 1px solid var(--line);
-  border-radius: 15px;
-  padding: 20px 15px;
-  min-height: 115px;
-  cursor: pointer;
-  transition: .2s;
+  background:linear-gradient(145deg,#10291e,#091a13);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:20px 15px;
+  min-height:115px;
+  cursor:pointer;
+  transition:.2s;
 }
 
 .module:hover {
-  transform: translateY(-3px);
-  border-color: var(--green);
+  transform:translateY(-3px);
+  border-color:var(--green);
 }
 
-.module-icon {
-  font-size: 23px;
-  margin-bottom: 12px;
-}
-
-.module h3 {
-  font-size: 14px;
-  margin: 0 0 6px;
-}
-
-.module p {
-  font-size: 10px;
-  color: var(--muted);
-  margin: 0;
-}
+.module-icon { font-size:23px; margin-bottom:12px; }
+.module h3 { font-size:14px; margin:0 0 6px; }
+.module p { font-size:10px; color:var(--muted); margin:0; }
 
 /* PANELES */
 
-.assistant-panel,
-.voice-panel,
-.settings-card,
-.settings-panel {
-  margin-top: 22px;
-  padding: 20px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 16px;
+.assistant-panel,.settings-panel {
+  margin-top:22px;
+  padding:20px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
 }
 
-.assistant-panel h3,
-.voice-panel h3,
-.settings-panel h3 {
-  color: var(--green);
-  font-size: 14px;
-  letter-spacing: 2px;
+.assistant-panel h3,.settings-panel h3 {
+  color:var(--green);
+  font-size:14px;
+  letter-spacing:2px;
 }
 
-.assistant-panel p,
-.settings-description {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
+.assistant-panel p,.settings-description {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
 }
 
 .actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 15px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:15px;
 }
 
-/* PANTALLAS DE CONFIGURACIÓN */
+/* CONFIGURACIÓN DE VOZ */
 
-.page-heading {
-  margin: 28px 0 20px;
-}
+.page-heading { margin:28px 0 20px; }
 
 .page-heading h2 {
-  font-size: 23px;
-  font-weight: 400;
-  margin: 0 0 8px;
+  font-size:23px;
+  font-weight:400;
+  margin:0 0 8px;
 }
 
 .page-heading p {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.5;
-  margin: 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+  margin:0;
 }
 
 .back-button {
-  margin-top: 20px;
-  margin-bottom: 5px;
-}
-
-.settings-card {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.settings-card:hover {
-  border-color: var(--green);
-  transform: translateY(-2px);
-}
-
-.settings-icon {
-  font-size: 27px;
-  color: var(--green);
-  min-width: 35px;
-  text-align: center;
-}
-
-.settings-card h3 {
-  margin: 0 0 6px;
-  font-size: 14px;
-}
-
-.settings-card p {
-  color: var(--muted);
-  font-size: 11px;
-  margin: 0;
-}
-
-.settings-card .arrow {
-  margin-left: auto;
-  color: var(--green);
-  font-size: 22px;
+  margin-top:20px;
+  margin-bottom:5px;
 }
 
 .settings-panel label {
-  display: block;
-  color: var(--muted);
-  font-size: 12px;
-  margin: 18px 0 8px;
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin:18px 0 8px;
 }
 
-.settings-panel input[type="text"],
 .settings-panel select {
-  width: 100%;
-  padding: 12px;
-  background: #071810;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  color: var(--text);
+  width:100%;
+  padding:12px;
+  background:#071810;
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:var(--text);
 }
 
 .settings-panel input[type="range"] {
-  width: 100%;
-  accent-color: var(--green);
-}
-
-.settings-panel input[type="color"] {
-  width: 100%;
-  height: 42px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #071810;
-  padding: 4px;
+  width:100%;
+  accent-color:var(--green);
 }
 
 .value-display {
-  color: var(--green);
-  font-size: 11px;
-  text-align: right;
-}
-
-.command-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.command-item {
-  background: rgba(101,255,178,.05);
-  border: 1px solid var(--line);
-  padding: 12px;
-  border-radius: 10px;
-}
-
-.command-item strong {
-  display: block;
-  color: var(--green);
-  font-size: 12px;
-  margin-bottom: 5px;
-}
-
-.command-item span {
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.5;
+  color:var(--green);
+  font-size:11px;
+  text-align:right;
 }
 
 .info-note {
-  border-left: 2px solid var(--green);
-  padding: 10px 12px;
-  margin-top: 18px;
-  background: rgba(101,255,178,.05);
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.6;
+  border-left:2px solid var(--green);
+  padding:10px 12px;
+  margin-top:18px;
+  background:rgba(101,255,178,.05);
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.6;
 }
 
 footer {
-  text-align: center;
-  color: var(--muted);
-  font-size: 10px;
-  margin-top: 35px;
-  letter-spacing: 2px;
+  text-align:center;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:35px;
+  letter-spacing:2px;
 }
 
 /* CHIBI */
 
 #chibi {
-  position: fixed;
-  z-index: 20;
-  right: 14px;
-  bottom: 14px;
-  width: 100px;
-  height: 125px;
-  background: transparent;
-  border: none;
-  padding: 0;
-  filter: drop-shadow(0 0 9px rgba(101,255,178,.35));
-  animation: float 3s ease-in-out infinite;
+  position:fixed;
+  z-index:20;
+  right:14px;
+  bottom:14px;
+  width:100px;
+  height:125px;
+  background:transparent;
+  border:none;
+  padding:0;
+  filter:drop-shadow(0 0 9px rgba(101,255,178,.35));
+  animation:float 3s ease-in-out infinite;
 }
 
 .chibi-head {
-  position: absolute;
-  top: 5px;
-  left: 24px;
-  width: 53px;
-  height: 55px;
-  border: 2px solid var(--green);
-  border-radius: 45% 45% 48% 48%;
-  background: linear-gradient(145deg, #1b4734, #071b12);
+  position:absolute;
+  top:5px;
+  left:24px;
+  width:53px;
+  height:55px;
+  border:2px solid var(--green);
+  border-radius:45% 45% 48% 48%;
+  background:linear-gradient(145deg,#1b4734,#071b12);
 }
 
 .chibi-hair {
-  position: absolute;
-  top: 0;
-  left: 19px;
-  width: 63px;
-  height: 57px;
-  border: 3px solid var(--green);
-  border-bottom: 0;
-  border-radius: 50% 50% 20% 20%;
-  pointer-events: none;
+  position:absolute;
+  top:0;
+  left:19px;
+  width:63px;
+  height:57px;
+  border:3px solid var(--green);
+  border-bottom:0;
+  border-radius:50% 50% 20% 20%;
+  pointer-events:none;
 }
 
 .chibi-eye {
-  position: absolute;
-  top: 27px;
-  width: 5px;
-  height: 7px;
-  background: var(--green);
-  border-radius: 50%;
-  box-shadow: 0 0 5px var(--green);
+  position:absolute;
+  top:27px;
+  width:5px;
+  height:7px;
+  background:var(--green);
+  border-radius:50%;
+  box-shadow:0 0 5px var(--green);
 }
 
-.chibi-eye.left { left: 38px; }
-.chibi-eye.right { left: 58px; }
+.chibi-eye.left { left:38px; }
+.chibi-eye.right { left:58px; }
 
 .chibi-mouth {
-  position: absolute;
-  top: 43px;
-  left: 48px;
-  width: 8px;
-  height: 2px;
-  background: var(--green);
-  border-radius: 5px;
+  position:absolute;
+  top:43px;
+  left:48px;
+  width:8px;
+  height:2px;
+  background:var(--green);
+  border-radius:5px;
 }
 
 .chibi-body {
-  position: absolute;
-  top: 62px;
-  left: 26px;
-  width: 50px;
-  height: 45px;
-  border: 2px solid var(--green);
-  border-radius: 18px 18px 12px 12px;
-  background: linear-gradient(145deg, #17432e, #071b12);
+  position:absolute;
+  top:62px;
+  left:26px;
+  width:50px;
+  height:45px;
+  border:2px solid var(--green);
+  border-radius:18px 18px 12px 12px;
+  background:linear-gradient(145deg,#17432e,#071b12);
 }
 
 .chibi-core {
-  position: absolute;
-  top: 77px;
-  left: 46px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 12px var(--green);
+  position:absolute;
+  top:77px;
+  left:46px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 12px var(--green);
 }
 
 #chibi.speaking .chibi-mouth {
-  animation: talk .18s infinite alternate;
+  animation:talk .18s infinite alternate;
 }
 
-#chibi.blink .chibi-eye {
-  height: 1px;
-}
+#chibi.blink .chibi-eye { height:1px; }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-8px); }
 }
 
 @keyframes talk {
-  from { height: 2px; }
-  to { height: 8px; }
+  from { height:2px; }
+  to { height:8px; }
 }
 
-@media (min-width: 700px) {
-  .modules { grid-template-columns: repeat(3, 1fr); }
-  #chibi { right: 30px; bottom: 25px; }
+@media (min-width:700px) {
+  .modules { grid-template-columns:repeat(3,1fr); }
+  #chibi { right:30px; bottom:25px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- PANTALLA 1: BIENVENIDA -->
+<!-- BIENVENIDA -->
 
 <section id="welcomeScreen">
   <div class="welcome-label">PERSONAL INTELLIGENCE SYSTEM</div>
@@ -653,7 +533,7 @@ footer {
   </button>
 </section>
 
-<!-- PANTALLA 2: CENTRO DE CONTROL -->
+<!-- CENTRO DE CONTROL -->
 
 <main id="dashboardScreen" class="container hidden">
 
@@ -666,9 +546,7 @@ footer {
   </header>
 
   <section class="dashboard-welcome">
-
     <div class="core">✧</div>
-
     <h2 id="dashboardGreeting">Buenas noches</h2>
     <div id="dashboardClock">00:00:00</div>
     <div id="dashboardDate"></div>
@@ -711,13 +589,14 @@ footer {
     <div class="module" onclick="openSettings()">
       <div class="module-icon">⚙</div>
       <h3>Configuración</h3>
-      <p>Personalización del sistema</p>
+      <p>Ajustes de voz del asistente</p>
     </div>
 
   </section>
 
   <section class="assistant-panel">
     <h3>ASISTENTE <span class="bellaName">B.E.L.L.A.</span></h3>
+
     <p id="assistantMessage">
       Sistema de voz disponible. La conexión con el asistente inteligente está pendiente.
     </p>
@@ -733,95 +612,7 @@ footer {
 
 </main>
 
-<!-- PANTALLA 3: CONFIGURACIÓN PRINCIPAL -->
-
-<main id="settingsScreen" class="container hidden">
-
-  <header>
-    <div>
-      <div class="brand bellaName">B.E.L.L.A.</div>
-      <div class="brand-sub">CONFIGURACIÓN DEL SISTEMA</div>
-    </div>
-    <div class="status">AJUSTES</div>
-  </header>
-
-  <button class="back-button" onclick="backToDashboard()">
-    ← Volver al centro de control
-  </button>
-
-  <section class="page-heading">
-    <h2>Configuración</h2>
-    <p>Personaliza tu asistente y ajusta cómo se comunica contigo.</p>
-  </section>
-
-  <div class="settings-card" onclick="openPersonalization()">
-    <div class="settings-icon">✧</div>
-    <div>
-      <h3>Personalización</h3>
-      <p>Nombre y apariencia de tu asistente</p>
-    </div>
-    <div class="arrow">›</div>
-  </div>
-
-  <div class="settings-card" onclick="openVoiceSettings()">
-    <div class="settings-icon">♫</div>
-    <div>
-      <h3>Voz y comandos</h3>
-      <p>Voz, velocidad, tono y reconocimiento</p>
-    </div>
-    <div class="arrow">›</div>
-  </div>
-
-  <footer>B.E.L.L.A. SYSTEM · CONFIGURACIÓN</footer>
-
-</main>
-
-<!-- PANTALLA 4: PERSONALIZACIÓN -->
-
-<main id="personalizationScreen" class="container hidden">
-
-  <header>
-    <div>
-      <div class="brand bellaName">B.E.L.L.A.</div>
-      <div class="brand-sub">PERSONALIZACIÓN</div>
-    </div>
-    <div class="status">AJUSTES</div>
-  </header>
-
-  <button class="back-button" onclick="openSettings()">
-    ← Volver a configuración
-  </button>
-
-  <section class="page-heading">
-    <h2>Personalización</h2>
-    <p>Adapta la identidad visual de tu asistente.</p>
-  </section>
-
-  <section class="settings-panel">
-    <h3>IDENTIDAD DEL ASISTENTE</h3>
-
-    <label for="assistantName">Nombre de tu asistente</label>
-    <input id="assistantName" type="text" maxlength="20"
-      placeholder="Ej. B.E.L.L.A.">
-
-    <label for="accentColor">Color principal del sistema</label>
-    <input id="accentColor" type="color" value="#65ffb2">
-
-    <div class="actions">
-      <button onclick="savePersonalization()">Guardar cambios</button>
-      <button onclick="resetPersonalization()">Restablecer</button>
-    </div>
-
-    <div class="info-note" id="personalizationMessage">
-      Los cambios se guardan en este navegador y dispositivo.
-    </div>
-  </section>
-
-  <footer>B.E.L.L.A. SYSTEM · PERSONALIZACIÓN</footer>
-
-</main>
-
-<!-- PANTALLA 5: VOZ Y COMANDOS -->
+<!-- CONFIGURACIÓN DE VOZ -->
 
 <main id="voiceSettingsScreen" class="container hidden">
 
@@ -830,20 +621,21 @@ footer {
       <div class="brand bellaName">B.E.L.L.A.</div>
       <div class="brand-sub">VOICE CONTROL CENTER</div>
     </div>
-    <div class="status">VOZ ACTIVA</div>
+    <div class="status">AJUSTES DE VOZ</div>
   </header>
 
-  <button class="back-button" onclick="openSettings()">
-    ← Volver a configuración
+  <button class="back-button" onclick="backToDashboard()">
+    ← Volver al centro de control
   </button>
 
   <section class="page-heading">
-    <h2>Voz y comandos</h2>
-    <p>Configura cómo suena B.E.L.L.A. y consulta los comandos disponibles.</p>
+    <h2>Configuración de voz</h2>
+    <p>Ajusta cómo suena tu asistente. Puedes probar los cambios cuando quieras.</p>
   </section>
 
   <section class="settings-panel">
-    <h3>AJUSTES DE VOZ</h3>
+
+    <h3>♫ PERSONALIZA MI VOZ</h3>
 
     <label for="voiceSelect">Voz seleccionada</label>
     <select id="voiceSelect">
@@ -861,75 +653,26 @@ footer {
     <div class="value-display" id="pitchValue">1.0</div>
 
     <div class="actions">
-      <button onclick="testVoice()">Probar mi voz</button>
+      <button onclick="testVoice()">🔊 Probar mi voz</button>
       <button onclick="silenceBella()">Silenciar</button>
-    </div>
-  </section>
-
-  <section class="settings-panel">
-    <h3>COMANDOS DE VOZ</h3>
-    <p class="settings-description">
-      Puedes probar estos comandos usando el botón Hablar o el botón del chibi.
-    </p>
-
-    <div class="command-list">
-
-      <div class="command-item">
-        <strong>«¿Qué hora es?»</strong>
-        <span>B.E.L.L.A. te dirá la hora actual.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«¿Qué fecha es?»</strong>
-        <span>Te indicará el día y la fecha.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«¿Cómo está el clima?»</strong>
-        <span>Te informará el clima disponible de La Serena.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«Abrir configuración»</strong>
-        <span>Te llevará a los ajustes del sistema.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«Abrir personalización»</strong>
-        <span>Abrirá los ajustes de apariencia.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«Abrir voz»</strong>
-        <span>Te llevará a los ajustes de voz.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«Volver al centro de control»</strong>
-        <span>Regresará a la pantalla principal.</span>
-      </div>
-
     </div>
 
     <div class="info-note">
-      Modo de comandos básicos: estos comandos locales permiten probar algunas acciones.
-      La conversación inteligente completa y las funciones avanzadas se conectarán en una etapa posterior.
+      Tus preferencias se guardan automáticamente en este navegador y dispositivo.
     </div>
 
-    <div class="actions">
-      <button onclick="listenBella()">🎙️ Probar comandos</button>
-    </div>
   </section>
 
   <footer>B.E.L.L.A. SYSTEM · VOICE CONTROL</footer>
 
 </main>
 
-<!-- CHIBI: VISIBLE DESPUÉS DE LA BIENVENIDA -->
+<!-- CHIBI -->
 
 <button id="chibi" class="hidden"
   aria-label="Hablar con B.E.L.L.A."
   onclick="listenBella()">
+
   <div class="chibi-hair"></div>
   <div class="chibi-head"></div>
   <div class="chibi-eye left"></div>
@@ -937,6 +680,7 @@ footer {
   <div class="chibi-mouth"></div>
   <div class="chibi-body"></div>
   <div class="chibi-core"></div>
+
 </button>
 
 <script src="voz.js"></script>
@@ -946,13 +690,6 @@ const TIME_ZONE = "America/Santiago";
 let welcomeFinished = false;
 let lastWeatherDescription = "El clima no está disponible";
 let currentScreen = "welcomeScreen";
-
-const screens = [
-  "dashboardScreen",
-  "settingsScreen",
-  "personalizationScreen",
-  "voiceSettingsScreen"
-];
 
 /* IDENTIDAD */
 
@@ -968,974 +705,239 @@ function updateAssistantName() {
   });
 
   document.getElementById("welcomeTitle").textContent = name;
-  document.title = name + " | Personal Command 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#061510">
-<title>B.E.L.L.A. | Personal Command Center</title>
-
-<style>
-:root {
-  --bg: #061510;
-  --panel: #0b2119;
-  --green: #65ffb2;
-  --green2: #20c982;
-  --text: #e5fff1;
-  --muted: #8eaa9b;
-  --line: rgba(101,255,178,.2);
+  document.title = name + " | Personal Command Center";
 }
 
-* { box-sizing: border-box; }
+/* RELOJ Y FECHA */
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(ellipse at 50% 0%, #123d2b 0%, transparent 55%),
-    var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
+function getGreeting() {
+  const hour = Number(
+    new Intl.DateTimeFormat("es-CL", {
+      hour:"2-digit",
+      hour12:false,
+      timeZone:TIME_ZONE
+    }).format(new Date())
+  );
+
+  if (hour >= 5 && hour < 12) return "Buenos días";
+  if (hour >= 12 && hour < 20) return "Buenas tardes";
+  return "Buenas noches";
 }
 
-button, input, select { font: inherit; }
-
-button {
-  cursor: pointer;
-  color: var(--green);
-  background: rgba(32,201,130,.09);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 11px 15px;
-  transition: .2s;
+function getCurrentTime() {
+  return new Intl.DateTimeFormat("es-CL", {
+    hour:"2-digit",
+    minute:"2-digit",
+    hour12:false,
+    timeZone:TIME_ZONE
+  }).format(new Date());
 }
 
-button:hover {
-  background: rgba(32,201,130,.2);
-  border-color: var(--green);
+function getCurrentDate() {
+  return new Intl.DateTimeFormat("es-CL", {
+    weekday:"long",
+    day:"numeric",
+    month:"long",
+    year:"numeric",
+    timeZone:TIME_ZONE
+  }).format(new Date());
 }
 
-.hidden,
-#chibi.hidden {
-  display: none !important;
+function updateClock() {
+  const now = new Date();
+
+  const time = new Intl.DateTimeFormat("es-CL", {
+    hour:"2-digit",
+    minute:"2-digit",
+    second:"2-digit",
+    hour12:false,
+    timeZone:TIME_ZONE
+  }).format(now);
+
+  const date = getCurrentDate();
+  const greeting = getGreeting();
+
+  document.getElementById("welcomeClock").textContent = time;
+  document.getElementById("dashboardClock").textContent = time;
+  document.getElementById("welcomeDate").textContent = date;
+  document.getElementById("dashboardDate").textContent = date;
+
+  document.getElementById("welcomeGreeting").textContent =
+    greeting + ", Renata";
+
+  document.getElementById("dashboardGreeting").textContent =
+    greeting + ", Renata";
 }
 
-/* BIENVENIDA */
+updateClock();
+setInterval(updateClock,1000);
 
-#welcomeScreen {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 25px;
-  position: relative;
-  overflow: hidden;
-}
+/* CLIMA DE LA SERENA */
 
-.welcome-label {
-  color: var(--green);
-  letter-spacing: 5px;
-  font-size: 11px;
-  margin-bottom: 25px;
-}
+async function updateWeather() {
+  const weather = document.getElementById("weather");
 
-.hologram {
-  width: 210px;
-  height: 240px;
-  position: relative;
-  margin: 10px auto 25px;
-  filter: drop-shadow(0 0 18px rgba(101,255,178,.5));
-  animation: float 4s ease-in-out infinite;
-}
+  try {
+    const url =
+      "https://api.open-meteo.com/v1/forecast" +
+      "?latitude=-29.9027&longitude=-71.2519" +
+      "&current=temperature_2m,weather_code" +
+      "&timezone=America%2FSantiago";
 
-.holo-head {
-  position: absolute;
-  width: 92px;
-  height: 105px;
-  border: 2px solid var(--green);
-  border-radius: 48% 48% 44% 44%;
-  top: 18px;
-  left: 59px;
-  background: linear-gradient(145deg, rgba(101,255,178,.2), rgba(10,40,27,.7));
-  box-shadow: inset 0 0 20px rgba(101,255,178,.2), 0 0 20px rgba(101,255,178,.3);
-}
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Weather unavailable");
 
-.holo-hair {
-  position: absolute;
-  width: 112px;
-  height: 115px;
-  top: 8px;
-  left: 49px;
-  border: 3px solid var(--green);
-  border-bottom: 0;
-  border-radius: 55% 55% 20% 20%;
-  opacity: .8;
-}
+    const data = await response.json();
+    const temp = Math.round(data.current.temperature_2m);
+    const code = data.current.weather_code;
 
-.holo-body {
-  position: absolute;
-  width: 160px;
-  height: 100px;
-  left: 25px;
-  top: 125px;
-  border: 2px solid var(--green);
-  border-radius: 70px 70px 15px 15px;
-  background: linear-gradient(180deg, rgba(101,255,178,.17), transparent);
-  box-shadow: inset 0 0 25px rgba(101,255,178,.2);
-}
+    const conditions = {
+      0:"Despejado ☀️",
+      1:"Mayormente despejado 🌤️",
+      2:"Parcialmente nublado ⛅",
+      3:"Nublado ☁️",
+      45:"Neblina 🌫️",
+      48:"Neblina 🌫️",
+      51:"Llovizna 🌦️",
+      53:"Llovizna 🌦️",
+      55:"Llovizna 🌦️",
+      61:"Lluvia 🌧️",
+      63:"Lluvia 🌧️",
+      65:"Lluvia intensa 🌧️",
+      80:"Chubascos 🌦️",
+      81:"Chubascos 🌦️",
+      82:"Chubascos intensos 🌧️",
+      95:"Tormenta ⛈️"
+    };
 
-.holo-eye {
-  position: absolute;
-  top: 61px;
-  width: 8px;
-  height: 4px;
-  border-radius: 10px;
-  background: var(--green);
-  box-shadow: 0 0 8px var(--green);
-}
+    const condition = conditions[code] || "Condición variable";
 
-.holo-eye.left { left: 82px; }
-.holo-eye.right { left: 120px; }
+    lastWeatherDescription = temp + " grados, " + condition;
+    weather.textContent =
+      "📍 La Serena · " + temp + "°C · " + condition;
 
-.holo-mouth {
-  position: absolute;
-  top: 91px;
-  left: 99px;
-  width: 14px;
-  height: 3px;
-  border-radius: 10px;
-  background: var(--green);
-}
-
-.holo-ring {
-  position: absolute;
-  width: 205px;
-  height: 35px;
-  border: 1px solid var(--green);
-  border-radius: 50%;
-  bottom: 0;
-  left: 2px;
-  box-shadow: 0 0 18px rgba(101,255,178,.35);
-}
-
-.welcome-title {
-  font-size: clamp(30px, 8vw, 48px);
-  letter-spacing: 8px;
-  color: var(--green);
-  text-shadow: 0 0 22px rgba(101,255,178,.5);
-  margin: 5px 0;
-}
-
-#welcomeGreeting {
-  font-size: 21px;
-  margin: 15px 0 8px;
-}
-
-#welcomeClock {
-  font-size: 36px;
-  color: var(--green);
-  font-weight: 300;
-  letter-spacing: 3px;
-}
-
-#welcomeDate, #weather {
-  color: var(--muted);
-  margin: 8px 0;
-}
-
-#weather { font-size: 14px; }
-
-.welcome-status {
-  margin-top: 22px;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--green);
-}
-
-#activateVoice {
-  margin-top: 22px;
-  font-size: 12px;
-}
-
-/* ESTRUCTURA GENERAL */
-
-.container {
-  width: min(100% - 30px, 1000px);
-  margin: auto;
-  padding: 28px 0 90px;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 20px;
-}
-
-.brand {
-  color: var(--green);
-  font-size: 25px;
-  letter-spacing: 5px;
-}
-
-.brand-sub {
-  color: var(--muted);
-  font-size: 9px;
-  letter-spacing: 2px;
-  margin-top: 5px;
-}
-
-.status {
-  color: var(--green);
-  font-size: 10px;
-  letter-spacing: 2px;
-}
-
-.status::before {
-  content: "● ";
-  text-shadow: 0 0 10px var(--green);
-}
-
-/* NÚCLEO IA */
-
-.core {
-  width: 115px;
-  height: 115px;
-  border: 2px solid var(--green);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 5px auto 18px;
-  font-size: 42px;
-  color: var(--green);
-  box-shadow:
-    0 0 20px rgba(101,255,178,.35),
-    inset 0 0 20px rgba(101,255,178,.2);
-  animation: corePulse 2.5s ease-in-out infinite;
-}
-
-@keyframes corePulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 18px rgba(101,255,178,.3),
-                inset 0 0 15px rgba(101,255,178,.15);
-  }
-  50% {
-    transform: scale(1.04);
-    box-shadow: 0 0 30px rgba(101,255,178,.55),
-                inset 0 0 25px rgba(101,255,178,.3);
+  } catch (error) {
+    lastWeatherDescription = "El clima no está disponible en este momento";
+    weather.textContent = "📍 La Serena · Clima no disponible";
   }
 }
 
-/* CENTRO DE CONTROL */
+updateWeather();
+setInterval(updateWeather,15*60*1000);
 
-.dashboard-welcome {
-  text-align: center;
-  padding: 30px 0;
+/* NAVEGACIÓN */
+
+function hideAllScreens() {
+  document.getElementById("welcomeScreen").classList.add("hidden");
+  document.getElementById("dashboardScreen").classList.add("hidden");
+  document.getElementById("voiceSettingsScreen").classList.add("hidden");
 }
 
-.dashboard-welcome h2 {
-  font-weight: 400;
-  font-size: 23px;
+function showScreen(id) {
+  hideAllScreens();
+  document.getElementById(id).classList.remove("hidden");
+  currentScreen = id;
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-.dashboard-welcome p {
-  color: var(--muted);
-  font-size: 12px;
+function showDashboard() {
+  if (welcomeFinished) return;
+
+  welcomeFinished = true;
+  showScreen("dashboardScreen");
+  document.getElementById("chibi").classList.remove("hidden");
 }
 
-#dashboardClock {
-  color: var(--green);
-  font-size: 34px;
-  letter-spacing: 3px;
+function backToDashboard() {
+  showScreen("dashboardScreen");
 }
 
-#dashboardDate {
-  color: var(--muted);
-  font-size: 12px;
+function openSettings() {
+  showScreen("voiceSettingsScreen");
+  loadVoiceSettings();
 }
 
-.section-title {
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--green);
-  margin: 25px 0 15px;
-}
+function activateWelcome() {
+  if (window.BELLA_VOICE) {
+    speakBella(
+      getGreeting() + ", Renata. Soy " + assistantName() +
+      ". Tu sistema personal está operativo."
+    );
+  }
 
-.modules {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
+  document.getElementById("activateVoice").textContent =
+    "CONTINUAR AL CENTRO DE CONTROL";
 
-.module {
-  background: linear-gradient(145deg, #10291e, #091a13);
-  border: 1px solid var(--line);
-  border-radius: 15px;
-  padding: 20px 15px;
-  min-height: 115px;
-  cursor: pointer;
-  transition: .2s;
-}
+  document.getElementById("activateVoice").onclick = showDashboard;
 
-.module:hover {
-  transform: translateY(-3px);
-  border-color: var(--green);
-}
-
-.module-icon {
-  font-size: 23px;
-  margin-bottom: 12px;
-}
-
-.module h3 {
-  font-size: 14px;
-  margin: 0 0 6px;
-}
-
-.module p {
-  font-size: 10px;
-  color: var(--muted);
-  margin: 0;
-}
-
-/* PANELES */
-
-.assistant-panel,
-.voice-panel,
-.settings-card,
-.settings-panel {
-  margin-top: 22px;
-  padding: 20px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-}
-
-.assistant-panel h3,
-.voice-panel h3,
-.settings-panel h3 {
-  color: var(--green);
-  font-size: 14px;
-  letter-spacing: 2px;
-}
-
-.assistant-panel p,
-.settings-description {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 15px;
-}
-
-/* PANTALLAS DE CONFIGURACIÓN */
-
-.page-heading {
-  margin: 28px 0 20px;
-}
-
-.page-heading h2 {
-  font-size: 23px;
-  font-weight: 400;
-  margin: 0 0 8px;
-}
-
-.page-heading p {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.back-button {
-  margin-top: 20px;
-  margin-bottom: 5px;
-}
-
-.settings-card {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.settings-card:hover {
-  border-color: var(--green);
-  transform: translateY(-2px);
-}
-
-.settings-icon {
-  font-size: 27px;
-  color: var(--green);
-  min-width: 35px;
-  text-align: center;
-}
-
-.settings-card h3 {
-  margin: 0 0 6px;
-  font-size: 14px;
-}
-
-.settings-card p {
-  color: var(--muted);
-  font-size: 11px;
-  margin: 0;
-}
-
-.settings-card .arrow {
-  margin-left: auto;
-  color: var(--green);
-  font-size: 22px;
-}
-
-.settings-panel label {
-  display: block;
-  color: var(--muted);
-  font-size: 12px;
-  margin: 18px 0 8px;
-}
-
-.settings-panel input[type="text"],
-.settings-panel select {
-  width: 100%;
-  padding: 12px;
-  background: #071810;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  color: var(--text);
-}
-
-.settings-panel input[type="range"] {
-  width: 100%;
-  accent-color: var(--green);
-}
-
-.settings-panel input[type="color"] {
-  width: 100%;
-  height: 42px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #071810;
-  padding: 4px;
-}
-
-.value-display {
-  color: var(--green);
-  font-size: 11px;
-  text-align: right;
-}
-
-.command-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.command-item {
-  background: rgba(101,255,178,.05);
-  border: 1px solid var(--line);
-  padding: 12px;
-  border-radius: 10px;
-}
-
-.command-item strong {
-  display: block;
-  color: var(--green);
-  font-size: 12px;
-  margin-bottom: 5px;
-}
-
-.command-item span {
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.5;
-}
-
-.info-note {
-  border-left: 2px solid var(--green);
-  padding: 10px 12px;
-  margin-top: 18px;
-  background: rgba(101,255,178,.05);
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.6;
-}
-
-footer {
-  text-align: center;
-  color: var(--muted);
-  font-size: 10px;
-  margin-top: 35px;
-  letter-spacing: 2px;
+  setTimeout(showDashboard,4500);
 }
 
 /* CHIBI */
 
-#chibi {
-  position: fixed;
-  z-index: 20;
-  right: 14px;
-  bottom: 14px;
-  width: 100px;
-  height: 125px;
-  background: transparent;
-  border: none;
-  padding: 0;
-  filter: drop-shadow(0 0 9px rgba(101,255,178,.35));
-  animation: float 3s ease-in-out infinite;
+function animateSpeaking() {
+  const chibi = document.getElementById("chibi");
+  chibi.classList.add("speaking");
+
+  setTimeout(() => {
+    chibi.classList.remove("speaking");
+  },3500);
 }
 
-.chibi-head {
-  position: absolute;
-  top: 5px;
-  left: 24px;
-  width: 53px;
-  height: 55px;
-  border: 2px solid var(--green);
-  border-radius: 45% 45% 48% 48%;
-  background: linear-gradient(145deg, #1b4734, #071b12);
+setInterval(() => {
+  const chibi = document.getElementById("chibi");
+
+  if (chibi.classList.contains("hidden")) return;
+
+  chibi.classList.add("blink");
+  setTimeout(() => chibi.classList.remove("blink"),180);
+},3500);
+
+/* MENSAJES Y VOZ */
+
+function setAssistantMessage(message) {
+  document.getElementById("assistantMessage").textContent = message;
 }
 
-.chibi-hair {
-  position: absolute;
-  top: 0;
-  left: 19px;
-  width: 63px;
-  height: 57px;
-  border: 3px solid var(--green);
-  border-bottom: 0;
-  border-radius: 50% 50% 20% 20%;
-  pointer-events: none;
+function speakBella(message) {
+  if (!window.BELLA_VOICE) {
+    setAssistantMessage("El módulo de voz no está disponible.");
+    return;
+  }
+
+  window.BELLA_VOICE.speak(message);
+  animateSpeaking();
 }
 
-.chibi-eye {
-  position: absolute;
-  top: 27px;
-  width: 5px;
-  height: 7px;
-  background: var(--green);
-  border-radius: 50%;
-  box-shadow: 0 0 5px var(--green);
+function testVoice() {
+  speakBella(
+    "Hola, Renata. Soy " + assistantName() +
+    ". Tu sistema personal está operativo. Estoy a tu servicio."
+  );
 }
 
-.chibi-eye.left { left: 38px; }
-.chibi-eye.right { left: 58px; }
+function silenceBella() {
+  if (window.BELLA_VOICE) {
+    window.BELLA_VOICE.stop();
+    window.BELLA_VOICE.silence();
+  }
 
-.chibi-mouth {
-  position: absolute;
-  top: 43px;
-  left: 48px;
-  width: 8px;
-  height: 2px;
-  background: var(--green);
-  border-radius: 5px;
+  document.getElementById("chibi").classList.remove("speaking");
+  setAssistantMessage("Voz silenciada.");
 }
 
-.chibi-body {
-  position: absolute;
-  top: 62px;
-  left: 26px;
-  width: 50px;
-  height: 45px;
-  border: 2px solid var(--green);
-  border-radius: 18px 18px 12px 12px;
-  background: linear-gradient(145deg, #17432e, #071b12);
-}
+/* RECONOCIMIENTO DE VOZ */
 
-.chibi-core {
-  position: absolute;
-  top: 77px;
-  left: 46px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 12px var(--green);
-}
+function listenBella() {
+  if (!window.BELLA_VOICE) {
+    setAssistantMessage("El módulo de voz no está disponible.");
+    return;
+  }
 
-#chibi.speaking .chibi-mouth {
-  animation: talk .18s infinite alternate;
-}
+  setAssistantMessage("Te estoy escuchando...");
 
-#chibi.blink .chibi-eye {
-  height: 1px;
-}
+  window.BELLA_VOICE.listen((message) => {
+    setAssistantMessage("Te escuché decir: " + message);
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-@keyframes talk {
-  from { height: 2px; }
-  to { height: 8px; }
-}
-
-@media (min-width: 700px) {
-  .modules { grid-template-columns: repeat(3, 1fr); }
-  #chibi { right: 30px; bottom: 25px; }
-}
-</style>
-</head>
-
-<body>
-
-<!-- PANTALLA 1: BIENVENIDA -->
-
-<section id="welcomeScreen">
-  <div class="welcome-label">PERSONAL INTELLIGENCE SYSTEM</div>
-
-  <div class="hologram" aria-label="Avatar holográfico de B.E.L.L.A.">
-    <div class="holo-hair"></div>
-    <div class="holo-head"></div>
-    <div class="holo-eye left"></div>
-    <div class="holo-eye right"></div>
-    <div class="holo-mouth"></div>
-    <div class="holo-body"></div>
-    <div class="holo-ring"></div>
-  </div>
-
-  <div class="welcome-title" id="welcomeTitle">B.E.L.L.A.</div>
-  <div id="welcomeGreeting">Bienvenida</div>
-  <div id="welcomeClock">00:00:00</div>
-  <div id="welcomeDate"></div>
-  <div id="weather">Consultando clima de La Serena...</div>
-
-  <div class="welcome-status">SISTEMA INICIANDO</div>
-
-  <button id="activateVoice" onclick="activateWelcome()">
-    ACTIVAR VOZ Y CONTINUAR
-  </button>
-</section>
-
-<!-- PANTALLA 2: CENTRO DE CONTROL -->
-
-<main id="dashboardScreen" class="container hidden">
-
-  <header>
-    <div>
-      <div class="brand bellaName">B.E.L.L.A.</div>
-      <div class="brand-sub">PERSONAL COMMAND CENTER</div>
-    </div>
-    <div class="status">SISTEMA ACTIVO</div>
-  </header>
-
-  <section class="dashboard-welcome">
-
-    <div class="core">✧</div>
-
-    <h2 id="dashboardGreeting">Buenas noches</h2>
-    <div id="dashboardClock">00:00:00</div>
-    <div id="dashboardDate"></div>
-  </section>
-
-  <div class="section-title">CENTRO DE CONTROL</div>
-
-  <section class="modules">
-
-    <div class="module" onclick="openModule('Agenda')">
-      <div class="module-icon">◷</div>
-      <h3>Agenda</h3>
-      <p>Organización y calendario</p>
-    </div>
-
-    <div class="module" onclick="openModule('Tareas')">
-      <div class="module-icon">✓</div>
-      <h3>Tareas</h3>
-      <p>Pendientes y actividades</p>
-    </div>
-
-    <div class="module" onclick="openModule('Academia')">
-      <div class="module-icon">⌘</div>
-      <h3>Academia</h3>
-      <p>Estudio y proyectos académicos</p>
-    </div>
-
-    <div class="module" onclick="openModule('Finanzas')">
-      <div class="module-icon">$</div>
-      <h3>Finanzas</h3>
-      <p>Control y planificación</p>
-    </div>
-
-    <div class="module" onclick="openModule('Proyectos')">
-      <div class="module-icon">✧</div>
-      <h3>Proyectos</h3>
-      <p>Ideas y desarrollo</p>
-    </div>
-
-    <div class="module" onclick="openSettings()">
-      <div class="module-icon">⚙</div>
-      <h3>Configuración</h3>
-      <p>Personalización del sistema</p>
-    </div>
-
-  </section>
-
-  <section class="assistant-panel">
-    <h3>ASISTENTE <span class="bellaName">B.E.L.L.A.</span></h3>
-    <p id="assistantMessage">
-      Sistema de voz disponible. La conexión con el asistente inteligente está pendiente.
-    </p>
-
-    <div class="actions">
-      <button onclick="openAssistant()">Abrir asistente IA</button>
-      <button onclick="listenBella()">Hablar</button>
-      <button onclick="testVoice()">Probar voz</button>
-    </div>
-  </section>
-
-  <footer>B.E.L.L.A. SYSTEM · LA SERENA · CHILE</footer>
-
-</main>
-
-<!-- PANTALLA 3: CONFIGURACIÓN PRINCIPAL -->
-
-<main id="settingsScreen" class="container hidden">
-
-  <header>
-    <div>
-      <div class="brand bellaName">B.E.L.L.A.</div>
-      <div class="brand-sub">CONFIGURACIÓN DEL SISTEMA</div>
-    </div>
-    <div class="status">AJUSTES</div>
-  </header>
-
-  <button class="back-button" onclick="backToDashboard()">
-    ← Volver al centro de control
-  </button>
-
-  <section class="page-heading">
-    <h2>Configuración</h2>
-    <p>Personaliza tu asistente y ajusta cómo se comunica contigo.</p>
-  </section>
-
-  <div class="settings-card" onclick="openPersonalization()">
-    <div class="settings-icon">✧</div>
-    <div>
-      <h3>Personalización</h3>
-      <p>Nombre y apariencia de tu asistente</p>
-    </div>
-    <div class="arrow">›</div>
-  </div>
-
-  <div class="settings-card" onclick="openVoiceSettings()">
-    <div class="settings-icon">♫</div>
-    <div>
-      <h3>Voz y comandos</h3>
-      <p>Voz, velocidad, tono y reconocimiento</p>
-    </div>
-    <div class="arrow">›</div>
-  </div>
-
-  <footer>B.E.L.L.A. SYSTEM · CONFIGURACIÓN</footer>
-
-</main>
-
-<!-- PANTALLA 4: PERSONALIZACIÓN -->
-
-<main id="personalizationScreen" class="container hidden">
-
-  <header>
-    <div>
-      <div class="brand bellaName">B.E.L.L.A.</div>
-      <div class="brand-sub">PERSONALIZACIÓN</div>
-    </div>
-    <div class="status">AJUSTES</div>
-  </header>
-
-  <button class="back-button" onclick="openSettings()">
-    ← Volver a configuración
-  </button>
-
-  <section class="page-heading">
-    <h2>Personalización</h2>
-    <p>Adapta la identidad visual de tu asistente.</p>
-  </section>
-
-  <section class="settings-panel">
-    <h3>IDENTIDAD DEL ASISTENTE</h3>
-
-    <label for="assistantName">Nombre de tu asistente</label>
-    <input id="assistantName" type="text" maxlength="20"
-      placeholder="Ej. B.E.L.L.A.">
-
-    <label for="accentColor">Color principal del sistema</label>
-    <input id="accentColor" type="color" value="#65ffb2">
-
-    <div class="actions">
-      <button onclick="savePersonalization()">Guardar cambios</button>
-      <button onclick="resetPersonalization()">Restablecer</button>
-    </div>
-
-    <div class="info-note" id="personalizationMessage">
-      Los cambios se guardan en este navegador y dispositivo.
-    </div>
-  </section>
-
-  <footer>B.E.L.L.A. SYSTEM · PERSONALIZACIÓN</footer>
-
-</main>
-
-<!-- PANTALLA 5: VOZ Y COMANDOS -->
-
-<main id="voiceSettingsScreen" class="container hidden">
-
-  <header>
-    <div>
-      <div class="brand bellaName">B.E.L.L.A.</div>
-      <div class="brand-sub">VOICE CONTROL CENTER</div>
-    </div>
-    <div class="status">VOZ ACTIVA</div>
-  </header>
-
-  <button class="back-button" onclick="openSettings()">
-    ← Volver a configuración
-  </button>
-
-  <section class="page-heading">
-    <h2>Voz y comandos</h2>
-    <p>Configura cómo suena B.E.L.L.A. y consulta los comandos disponibles.</p>
-  </section>
-
-  <section class="settings-panel">
-    <h3>AJUSTES DE VOZ</h3>
-
-    <label for="voiceSelect">Voz seleccionada</label>
-    <select id="voiceSelect">
-      <option value="">Cargando voces...</option>
-    </select>
-
-    <label for="rate">Velocidad de voz</label>
-    <input id="rate" type="range" min="0.7" max="1.3"
-      step="0.1" value="1">
-    <div class="value-display" id="rateValue">1.0</div>
-
-    <label for="pitch">Tono de voz</label>
-    <input id="pitch" type="range" min="0.7" max="1.5"
-      step="0.1" value="1">
-    <div class="value-display" id="pitchValue">1.0</div>
-
-    <div class="actions">
-      <button onclick="testVoice()">Probar mi voz</button>
-      <button onclick="silenceBella()">Silenciar</button>
-    </div>
-  </section>
-
-  <section class="settings-panel">
-    <h3>COMANDOS DE VOZ</h3>
-    <p class="settings-description">
-      Puedes probar estos comandos usando el botón Hablar o el botón del chibi.
-    </p>
-
-    <div class="command-list">
-
-      <div class="command-item">
-        <strong>«¿Qué hora es?»</strong>
-        <span>B.E.L.L.A. te dirá la hora actual.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«¿Qué fecha es?»</strong>
-        <span>Te indicará el día y la fecha.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«¿Cómo está el clima?»</strong>
-        <span>Te informará el clima disponible de La Serena.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«Abrir configuración»</strong>
-        <span>Te llevará a los ajustes del sistema.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«Abrir personalización»</strong>
-        <span>Abrirá los ajustes de apariencia.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«Abrir voz»</strong>
-        <span>Te llevará a los ajustes de voz.</span>
-      </div>
-
-      <div class="command-item">
-        <strong>«Volver al centro de control»</strong>
-        <span>Regresará a la pantalla principal.</span>
-      </div>
-
-    </div>
-
-    <div class="info-note">
-      Modo de comandos básicos: estos comandos locales permiten probar algunas acciones.
-      La conversación inteligente completa y las funciones avanzadas se conectarán en una etapa posterior.
-    </div>
-
-    <div class="actions">
-      <button onclick="listenBella()">🎙️ Probar comandos</button>
-    </div>
-  </section>
-
-  <footer>B.E.L.L.A. SYSTEM · VOICE CONTROL</footer>
-
-</main>
-
-<!-- CHIBI: VISIBLE DESPUÉS DE LA BIENVENIDA -->
-
-<button id="chibi" class="hidden"
-  aria-label="Hablar con B.E.L.L.A."
-  onclick="listenBella()">
-  <div class="chibi-hair"></div>
-  <div class="chibi-head"></div>
-  <div class="chibi-eye left"></div>
-  <div class="chibi-eye right"></div>
-  <div class="chibi-mouth"></div>
-  <div class="chibi-body"></div>
-  <div class="chibi-core"></div>
-</button>
-
-<script src="voz.js"></script>
-
-<script>
-const TIME_ZONE = "America/Santiago";
-let welcomeFinished = false;
-let lastWeatherDescription = "El clima no está disponible";
-let currentScreen = "welcomeScreen";
-
-const screens = [
-  "dashboardScreen",
-  "settingsScreen",
-  "personalizationScreen",
-  "voiceSettingsScreen"
-];
-
-/* IDENTIDAD */
-
-function assistantName() {
-  return localStorage.getItem("bella_name") || "B.E.L.L.A.";
-}
-
-function updateAssistantName() {
-  const name = assistantName();
-
-  document.querySelectorAll(".bellaName").forEach(element => {
-    element.textContent = name;
-  });
-
-  document.getElementById("welcomeTitle").textContent = name;
-  document.title = name + " | Personal Command 
+    const response =
+      "He recibid
