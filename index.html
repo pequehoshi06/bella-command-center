@@ -588,7 +588,100 @@ button { cursor:pointer; }
   font-size:10px;
   margin-bottom:15px;
 }
+/* AGENDA GOOGLE CALENDAR */
 
+#agendaScreen {
+  padding:22px;
+}
+
+.agenda-container {
+  max-width:900px;
+  margin:35px auto;
+}
+
+.agenda-card {
+  background:linear-gradient(145deg,#102c21,#081b13);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:25px;
+  box-shadow:var(--glow);
+  margin-bottom:20px;
+}
+
+.agenda-card h2 {
+  color:var(--green);
+  margin-bottom:10px;
+}
+
+.agenda-description {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.agenda-status {
+  color:var(--muted);
+  font-size:12px;
+  margin:15px 0;
+}
+
+.agenda-form {
+  display:grid;
+  gap:13px;
+}
+
+.agenda-form label {
+  color:var(--text);
+  font-size:13px;
+}
+
+.agenda-form input,
+.agenda-form textarea {
+  width:100%;
+  margin-top:7px;
+  padding:12px;
+  background:#061510;
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:9px;
+}
+
+.agenda-form textarea {
+  min-height:85px;
+  resize:vertical;
+}
+
+.agenda-event {
+  border:1px solid var(--border);
+  border-left:3px solid var(--green);
+  border-radius:12px;
+  padding:15px;
+  margin-top:12px;
+  background:rgba(101,255,178,.04);
+}
+
+.agenda-event strong {
+  color:var(--green);
+  display:block;
+  margin-bottom:7px;
+}
+
+.agenda-event p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+.agenda-empty {
+  color:var(--muted);
+  font-size:13px;
+  padding:15px 0;
+}
+
+@media(max-width:700px) {
+  #agendaScreen { padding:16px; }
+}
 /* CONFIGURACIÓN */
 
 #voiceSettingsScreen { padding:22px; }
@@ -978,6 +1071,95 @@ footer {
   </div>
 
 </section>
+<!-- AGENDA GOOGLE CALENDAR -->
+
+<section id="agendaScreen" class="screen">
+
+  <div class="agenda-container">
+
+    <button class="back-button" onclick="backToDashboard()">
+      ← Volver al centro de control
+    </button>
+
+    <div class="agenda-card">
+
+      <p class="panel-title">SISTEMA DE ORGANIZACIÓN</p>
+
+      <h2>Mi agenda</h2>
+
+      <p class="agenda-description">
+        Tu calendario personal conectado con Google Calendar.
+      </p>
+
+      <button class="primary-button" id="connectGoogleButton"
+        onclick="connectGoogleCalendar()">
+        Conectar Google Calendar
+      </button>
+
+      <p class="agenda-status" id="calendarStatus">
+        Google Calendar todavía no está conectado.
+      </p>
+
+      <button class="small-button" id="refreshCalendarButton"
+        onclick="loadCalendarEvents()" style="display:none">
+        ↻ Actualizar eventos
+      </button>
+
+    </div>
+
+    <div class="agenda-card" id="eventFormCard" style="display:none">
+
+      <h2>Nuevo evento</h2>
+
+      <p class="agenda-description">
+        Añade un evento directamente a tu Google Calendar.
+      </p>
+
+      <form class="agenda-form" id="calendarEventForm">
+
+        <label>
+          Nombre del evento
+          <input id="eventTitle" type="text"
+            placeholder="Ej. Prueba de nutrición" required>
+        </label>
+
+        <label>
+          Fecha
+          <input id="eventDate" type="date" required>
+        </label>
+
+        <label>
+          Hora de inicio
+          <input id="eventTime" type="time" required>
+        </label>
+
+        <label>
+          Descripción
+          <textarea id="eventDescription"
+            placeholder="Detalles del evento (opcional)"></textarea>
+        </label>
+
+        <button class="primary-button" type="submit">
+          Guardar en Google Calendar
+        </button>
+
+      </form>
+
+    </div>
+
+    <div class="agenda-card" id="eventsCard" style="display:none">
+
+      <h2>Próximos eventos</h2>
+
+      <div id="calendarEvents">
+        <p class="agenda-empty">Conecta tu calendario para consultar tus eventos.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 <!-- CONFIGURACIÓN DE VOZ -->
 
@@ -1253,17 +1435,14 @@ function showToast(message) {
 /* MÓDULOS */
 
 function openModule(moduleName) {
+
+  if (moduleName === "Agenda") {
+    showScreen("agendaScreen");
+    updateCalendarConnectionUI();
+    return;
+  }
+
   showToast("Módulo " + moduleName + ": próximamente disponible.");
-}
-
-/* ASISTENTE */
-
-function openAssistant() {
-  setAssistantMessage(
-    "Estoy lista para ayudarte. Puedes hablar conmigo desde el botón Hablar."
-  );
-
-  showToast("B.E.L.L.A. está disponible.");
 }
 
 /* CONFIGURACIÓN DE VOZ */
@@ -1425,6 +1604,7 @@ document.addEventListener("DOMContentLoaded",() => {
 });
 
 </script>
-
+<!-- GOOGLE IDENTITY SERVICES -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </body>
 </html>
