@@ -8,686 +8,759 @@
 
 <style>
 :root {
-  --bg: #061510;
-  --panel: #0b2119;
-  --panel2: #102c21;
-  --green: #65ffb2;
-  --green2: #21c982;
-  --text: #e8fff2;
-  --muted: #8bb5a0;
-  --border: rgba(101,255,178,.18);
-  --glow: 0 0 25px rgba(101,255,178,.16);
+  --bg:#061510;
+  --panel:#0b2119;
+  --green:#65ffb2;
+  --green2:#21c982;
+  --text:#e8fff2;
+  --muted:#8bb5a0;
+  --border:rgba(101,255,178,.18);
+  --glow:0 0 25px rgba(101,255,178,.2);
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body {
-  min-height: 100vh;
+  min-height:100vh;
   background:
-    radial-gradient(circle at 50% 0%, #123c2b 0%, transparent 45%),
+    radial-gradient(circle at 50% 0%,#123c2b 0%,transparent 45%),
     var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  overflow-x:hidden;
 }
 
-button, input, select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-/* FONDO */
+button,input,select { font:inherit; }
+button { cursor:pointer; }
 
 .background-grid {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: .12;
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.12;
   background-image:
-    linear-gradient(rgba(101,255,178,.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(101,255,178,.15) 1px, transparent 1px);
-  background-size: 38px 38px;
-  mask-image: linear-gradient(to bottom, black, transparent);
-  z-index: -1;
+    linear-gradient(rgba(101,255,178,.15) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(101,255,178,.15) 1px,transparent 1px);
+  background-size:38px 38px;
+  mask-image:linear-gradient(to bottom,black,transparent);
+  z-index:-1;
 }
-
-/* PANTALLAS */
 
 .screen {
-  display: none;
-  min-height: 100vh;
-  width: 100%;
+  display:none;
+  min-height:100vh;
+  width:100%;
 }
 
-.screen.active {
-  display: block;
-}
+.screen.active { display:block; }
 
 /* BIENVENIDA */
 
 #welcomeScreen {
-  display: none;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  padding: 25px;
-  text-align: center;
+  display:none;
+  min-height:100vh;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  text-align:center;
 }
 
-#welcomeScreen.active {
-  display: flex;
-}
+#welcomeScreen.active { display:flex; }
 
 .welcome-content {
-  width: 100%;
-  max-width: 550px;
-  animation: appear 1.2s ease;
+  width:100%;
+  max-width:550px;
+  animation:appear 1.2s ease;
 }
 
-.welcome-orb {
-  width: 155px;
-  height: 155px;
-  border-radius: 50%;
-  margin: 0 auto 35px;
-  border: 2px solid var(--green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 65px;
-  color: var(--green);
-  box-shadow:
-    0 0 20px rgba(101,255,178,.3),
-    inset 0 0 35px rgba(101,255,178,.12);
-  animation: pulse 3s infinite ease-in-out;
+.welcome-kicker {
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:4px;
+  margin-bottom:24px;
 }
 
 .welcome-content h1 {
-  font-size: clamp(38px, 9vw, 65px);
-  letter-spacing: 8px;
-  color: var(--green);
-  text-shadow: 0 0 25px rgba(101,255,178,.5);
+  color:var(--green);
+  font-size:clamp(38px,9vw,62px);
+  letter-spacing:9px;
+  text-shadow:0 0 25px rgba(101,255,178,.45);
 }
 
 .welcome-subtitle {
-  margin-top: 12px;
-  color: var(--muted);
-  letter-spacing: 3px;
-  font-size: 12px;
+  margin-top:10px;
+  color:var(--muted);
+  letter-spacing:3px;
+  font-size:11px;
+}
+
+/* REACTOR ARC */
+
+.reactor-zone {
+  width:270px;
+  height:270px;
+  max-width:75vw;
+  max-height:75vw;
+  margin:35px auto 30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  border-radius:50%;
+  outline:none;
+}
+
+.reactor-zone:focus-visible {
+  outline:2px solid var(--green);
+  outline-offset:12px;
+}
+
+.reactor {
+  position:relative;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:filter .5s;
+  filter:drop-shadow(0 0 12px rgba(101,255,178,.25));
+}
+
+.reactor::before,
+.reactor::after {
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  inset:0;
+  border:1px solid rgba(101,255,178,.55);
+  box-shadow:0 0 15px rgba(101,255,178,.15);
+}
+
+.reactor::after {
+  inset:13px;
+  border-style:dashed;
+  border-color:rgba(101,255,178,.5);
+}
+
+.reactor-ring {
+  position:absolute;
+  border-radius:50%;
+  border:2px solid transparent;
+}
+
+.ring-one {
+  inset:24px;
+  border-top-color:var(--green);
+  border-bottom-color:var(--green);
+  animation:spin 12s linear infinite;
+}
+
+.ring-two {
+  inset:39px;
+  border-left-color:rgba(101,255,178,.8);
+  border-right-color:rgba(101,255,178,.8);
+  animation:spinReverse 8s linear infinite;
+}
+
+.ring-three {
+  inset:53px;
+  border:1px solid rgba(101,255,178,.7);
+  animation:spin 18s linear infinite;
+}
+
+.reactor-core {
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle,#effff7 0%,#aaffd0 13%,#37e994 38%,#087b4a 68%,transparent 75%);
+  box-shadow:
+    0 0 15px #65ffb2,
+    0 0 35px rgba(101,255,178,.8),
+    0 0 75px rgba(33,201,130,.5);
+  position:relative;
+  z-index:2;
+  animation:coreBreath 2.5s ease-in-out infinite;
+}
+
+.reactor-core::after {
+  content:"";
+  position:absolute;
+  inset:13px;
+  border:1px solid rgba(255,255,255,.75);
+  border-radius:50%;
+}
+
+.reactor-zone::before {
+  content:"";
+  position:absolute;
+  inset:-12px;
+  border:1px solid rgba(101,255,178,.18);
+  border-radius:50%;
+  box-shadow:0 0 30px rgba(101,255,178,.12);
+}
+
+.reactor-zone:hover .reactor {
+  filter:drop-shadow(0 0 25px rgba(101,255,178,.7));
+}
+
+.reactor-zone:hover .reactor-core {
+  box-shadow:0 0 25px #65ffb2,0 0 65px rgba(101,255,178,.9);
+}
+
+.reactor-zone.activating .ring-one {
+  animation-duration:1.2s;
+}
+
+.reactor-zone.activating .ring-two {
+  animation-duration:1s;
+}
+
+.reactor-zone.activating .ring-three {
+  animation-duration:1.5s;
+}
+
+.reactor-zone.activating .reactor-core {
+  animation:activationPulse .8s infinite alternate;
+}
+
+.reactor-caption {
+  color:var(--green);
+  font-size:11px;
+  letter-spacing:3px;
+  margin-bottom:22px;
+}
+
+.welcome-greeting {
+  color:var(--text);
+  font-size:clamp(19px,5vw,25px);
+  margin-bottom:10px;
 }
 
 .welcome-message {
-  margin: 35px auto;
-  line-height: 1.8;
-  color: #c2e7d2;
-  max-width: 400px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+  min-height:25px;
 }
 
-.primary-button {
-  border: 1px solid var(--green);
-  background: rgba(101,255,178,.12);
-  color: var(--green);
-  padding: 15px 30px;
-  border-radius: 30px;
-  font-weight: bold;
-  transition: .25s;
-  box-shadow: var(--glow);
-}
-
-.primary-button:hover {
-  background: var(--green);
-  color: #061510;
-  transform: translateY(-2px);
+.welcome-hint {
+  color:#6c9d82;
+  font-size:10px;
+  letter-spacing:2px;
+  margin-top:28px;
 }
 
 .welcome-footer {
-  margin-top: 45px;
-  color: #658b77;
-  font-size: 11px;
-  letter-spacing: 2px;
+  color:#587866;
+  font-size:10px;
+  letter-spacing:2px;
+  margin-top:35px;
 }
 
-/* CENTRO DE CONTROL */
+/* DASHBOARD */
 
-#dashboardScreen {
-  padding: 22px;
-}
+#dashboardScreen { padding:22px; }
 
 .dashboard {
-  max-width: 1150px;
-  margin: auto;
+  max-width:1150px;
+  margin:auto;
 }
 
 .topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  padding: 10px 0 25px;
-  border-bottom: 1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:10px 0 25px;
+  border-bottom:1px solid var(--border);
 }
 
 .brand {
-  color: var(--green);
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 3px;
+  color:var(--green);
+  font-size:22px;
+  font-weight:bold;
+  letter-spacing:3px;
 }
 
 .system-status {
-  color: var(--green);
-  font-size: 11px;
-  letter-spacing: 1px;
+  color:var(--green);
+  font-size:11px;
+  letter-spacing:1px;
 }
 
 .status-dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-  margin-right: 6px;
-  box-shadow: 0 0 10px var(--green);
+  display:inline-block;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  margin-right:6px;
+  box-shadow:0 0 10px var(--green);
 }
 
-.welcome-heading {
-  margin: 30px 0 25px;
-}
+.welcome-heading { margin:30px 0 25px; }
 
 .welcome-heading h2 {
-  font-size: clamp(24px, 5vw, 34px);
-  font-weight: 500;
+  font-size:clamp(24px,5vw,34px);
+  font-weight:500;
 }
 
-.welcome-heading h2 span {
-  color: var(--green);
-}
+.welcome-heading h2 span { color:var(--green); }
 
 .welcome-heading p {
-  color: var(--muted);
-  margin-top: 9px;
-  font-size: 14px;
+  color:var(--muted);
+  margin-top:9px;
+  font-size:14px;
 }
 
-/* PANEL PRINCIPAL */
-
 .main-panel {
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 20px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:20px;
 }
 
 .panel {
-  background: linear-gradient(145deg, rgba(16,44,33,.95), rgba(8,27,19,.95));
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 23px;
-  box-shadow: var(--glow);
+  background:linear-gradient(145deg,rgba(16,44,33,.95),rgba(8,27,19,.95));
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:23px;
+  box-shadow:var(--glow);
 }
 
 .panel-title {
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:2px;
+  margin-bottom:20px;
 }
 
-/* NÚCLEO */
-
 .dashboard-welcome {
-  min-height: 310px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  min-height:310px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 
 .core {
-  width: 115px;
-  height: 115px;
-  border-radius: 50%;
-  border: 2px solid var(--green);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 43px;
-  color: var(--green);
-  margin-bottom: 22px;
-  box-shadow:
-    0 0 25px rgba(101,255,178,.25),
-    inset 0 0 30px rgba(101,255,178,.12);
-  animation: corePulse 3s infinite ease-in-out;
+  width:115px;
+  height:115px;
+  border-radius:50%;
+  border:2px solid var(--green);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:43px;
+  color:var(--green);
+  margin-bottom:22px;
+  box-shadow:0 0 25px rgba(101,255,178,.25),inset 0 0 30px rgba(101,255,178,.12);
+  animation:coreBreath 3s infinite ease-in-out;
 }
 
 .dashboard-welcome h3 {
-  color: var(--green);
-  letter-spacing: 2px;
+  color:var(--green);
+  letter-spacing:2px;
 }
 
 .dashboard-welcome p {
-  color: var(--muted);
-  margin-top: 10px;
-  line-height: 1.6;
-  font-size: 13px;
+  color:var(--muted);
+  margin-top:10px;
+  line-height:1.6;
+  font-size:13px;
 }
 
-/* RELOJ */
-
 .clock-panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
 .clock {
-  font-size: clamp(38px, 8vw, 58px);
-  color: var(--green);
-  font-weight: 300;
-  letter-spacing: 3px;
-  font-variant-numeric: tabular-nums;
+  font-size:clamp(38px,8vw,58px);
+  color:var(--green);
+  font-weight:300;
+  letter-spacing:3px;
+  font-variant-numeric:tabular-nums;
 }
 
 .date {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 14px;
-  text-transform: capitalize;
+  margin-top:8px;
+  color:var(--muted);
+  font-size:14px;
+  text-transform:capitalize;
 }
 
 .weather {
-  margin-top: 25px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
+  margin-top:25px;
+  padding-top:20px;
+  border-top:1px solid var(--border);
 }
 
 .weather-location {
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: 1px;
+  color:var(--muted);
+  font-size:12px;
+  letter-spacing:1px;
 }
 
 .weather-info {
-  margin-top: 10px;
-  color: var(--green);
-  font-size: 16px;
+  margin-top:10px;
+  color:var(--green);
+  font-size:16px;
 }
 
 .weather-detail {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 6px;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:6px;
 }
 
-/* MÓDULOS */
-
-.modules-section {
-  margin-top: 25px;
-}
+.modules-section { margin-top:25px; }
 
 .section-heading {
-  color: var(--muted);
-  letter-spacing: 2px;
-  font-size: 11px;
-  margin-bottom: 15px;
+  color:var(--muted);
+  letter-spacing:2px;
+  font-size:11px;
+  margin-bottom:15px;
 }
 
 .modules-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
 
 .module {
-  border: 1px solid var(--border);
-  background: rgba(11,33,25,.8);
-  border-radius: 15px;
-  padding: 20px 12px;
-  color: var(--text);
-  text-align: left;
-  transition: .25s;
-  min-height: 100px;
+  border:1px solid var(--border);
+  background:rgba(11,33,25,.8);
+  border-radius:15px;
+  padding:20px 12px;
+  color:var(--text);
+  text-align:left;
+  transition:.25s;
+  min-height:100px;
 }
 
 .module:hover {
-  border-color: var(--green);
-  transform: translateY(-3px);
-  box-shadow: var(--glow);
+  border-color:var(--green);
+  transform:translateY(-3px);
+  box-shadow:var(--glow);
 }
 
 .module-icon {
-  display: block;
-  font-size: 23px;
-  margin-bottom: 12px;
+  display:block;
+  font-size:23px;
+  margin-bottom:12px;
 }
 
 .module strong {
-  font-size: 13px;
-  display: block;
+  font-size:13px;
+  display:block;
 }
 
 .module small {
-  display: block;
-  color: var(--muted);
-  margin-top: 5px;
-  font-size: 10px;
+  display:block;
+  color:var(--muted);
+  margin-top:5px;
+  font-size:10px;
 }
 
-/* ASISTENTE */
-
 .assistant-panel {
-  margin-top: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  flex-wrap: wrap;
+  margin-top:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  flex-wrap:wrap;
 }
 
 .assistant-description h3 {
-  color: var(--green);
-  margin-bottom: 7px;
+  color:var(--green);
+  margin-bottom:7px;
 }
 
 .assistant-description p {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
 }
 
 .assistant-actions {
-  display: flex;
-  gap: 9px;
-  flex-wrap: wrap;
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
 }
 
 .small-button {
-  background: rgba(101,255,178,.08);
-  color: var(--green);
-  border: 1px solid var(--border);
-  padding: 11px 15px;
-  border-radius: 22px;
-  font-size: 12px;
+  background:rgba(101,255,178,.08);
+  color:var(--green);
+  border:1px solid var(--border);
+  padding:11px 15px;
+  border-radius:22px;
+  font-size:12px;
 }
 
 .small-button:hover {
-  border-color: var(--green);
-  background: rgba(101,255,178,.16);
+  border-color:var(--green);
+  background:rgba(101,255,178,.16);
 }
 
-/* CHIBI */
+/* CHIBI: SOLO EN EL DASHBOARD */
 
 .chibi-area {
-  position: fixed;
-  right: 18px;
-  bottom: 15px;
-  z-index: 5;
-  display: flex;
-  align-items: end;
-  gap: 8px;
-  pointer-events: none;
+  position:fixed;
+  right:18px;
+  bottom:15px;
+  z-index:5;
+  display:flex;
+  align-items:end;
+  gap:8px;
+  pointer-events:none;
 }
 
 .chibi {
-  width: 76px;
-  height: 85px;
-  position: relative;
-  animation: chibiFloat 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 10px rgba(101,255,178,.3));
+  width:76px;
+  height:85px;
+  position:relative;
+  animation:chibiFloat 3s ease-in-out infinite;
+  filter:drop-shadow(0 0 10px rgba(101,255,178,.3));
 }
 
 .chibi-head {
-  width: 65px;
-  height: 61px;
-  border-radius: 48% 48% 45% 45%;
-  background: #e9c4a8;
-  border: 2px solid #f8e4d1;
-  position: absolute;
-  top: 0;
-  left: 5px;
-  overflow: hidden;
+  width:65px;
+  height:61px;
+  border-radius:48% 48% 45% 45%;
+  background:#e9c4a8;
+  border:2px solid #f8e4d1;
+  position:absolute;
+  top:0;
+  left:5px;
+  overflow:hidden;
 }
 
 .chibi-hair {
-  position: absolute;
-  top: -10px;
-  left: -4px;
-  width: 72px;
-  height: 37px;
-  border-radius: 50% 50% 35% 35%;
-  background: #27342d;
+  position:absolute;
+  top:-10px;
+  left:-4px;
+  width:72px;
+  height:37px;
+  border-radius:50% 50% 35% 35%;
+  background:#27342d;
 }
 
 .chibi-eye {
-  position: absolute;
-  top: 34px;
-  width: 7px;
-  height: 10px;
-  border-radius: 50%;
-  background: #29362e;
+  position:absolute;
+  top:34px;
+  width:7px;
+  height:10px;
+  border-radius:50%;
+  background:#29362e;
 }
 
-.chibi-eye.left { left: 17px; }
-.chibi-eye.right { right: 17px; }
+.chibi-eye.left { left:17px; }
+.chibi-eye.right { right:17px; }
 
 .chibi-body {
-  position: absolute;
-  bottom: 0;
-  left: 17px;
-  width: 43px;
-  height: 31px;
-  border-radius: 15px 15px 7px 7px;
-  background: #65c99a;
-  border: 2px solid #a4ffd0;
+  position:absolute;
+  bottom:0;
+  left:17px;
+  width:43px;
+  height:31px;
+  border-radius:15px 15px 7px 7px;
+  background:#65c99a;
+  border:2px solid #a4ffd0;
 }
 
 .chibi-label {
-  background: #0b2119;
-  border: 1px solid var(--border);
-  color: var(--green);
-  padding: 7px 10px;
-  border-radius: 12px;
-  font-size: 10px;
-  margin-bottom: 15px;
+  background:#0b2119;
+  border:1px solid var(--border);
+  color:var(--green);
+  padding:7px 10px;
+  border-radius:12px;
+  font-size:10px;
+  margin-bottom:15px;
 }
 
-/* CONFIGURACIÓN DE VOZ */
+/* CONFIGURACIÓN */
 
-#voiceSettingsScreen {
-  padding: 22px;
-}
+#voiceSettingsScreen { padding:22px; }
 
 .settings-container {
-  max-width: 700px;
-  margin: 35px auto;
+  max-width:700px;
+  margin:35px auto;
 }
 
 .back-button {
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--green);
-  padding: 10px 15px;
-  border-radius: 20px;
-  margin-bottom: 22px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--green);
+  padding:10px 15px;
+  border-radius:20px;
+  margin-bottom:22px;
 }
 
 .settings-card {
-  background: linear-gradient(145deg, #102c21, #081b13);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: var(--glow);
+  background:linear-gradient(145deg,#102c21,#081b13);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:25px;
+  box-shadow:var(--glow);
 }
 
 .settings-card h2 {
-  color: var(--green);
-  font-size: 25px;
-  margin-bottom: 9px;
+  color:var(--green);
+  font-size:25px;
+  margin-bottom:9px;
 }
 
 .settings-intro {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
-  margin-bottom: 28px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:28px;
 }
 
-.setting-group {
-  margin-bottom: 25px;
-}
+.setting-group { margin-bottom:25px; }
 
 .setting-group label {
-  display: block;
-  color: var(--text);
-  margin-bottom: 12px;
-  font-size: 14px;
+  display:block;
+  color:var(--text);
+  margin-bottom:12px;
+  font-size:14px;
 }
 
 .setting-value {
-  color: var(--green);
-  float: right;
+  color:var(--green);
+  float:right;
 }
 
 select {
-  width: 100%;
-  padding: 13px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #061510;
-  color: var(--text);
-  outline: none;
+  width:100%;
+  padding:13px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#061510;
+  color:var(--text);
+  outline:none;
 }
 
 input[type="range"] {
-  width: 100%;
-  accent-color: var(--green);
+  width:100%;
+  accent-color:var(--green);
 }
 
 .voice-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 25px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:25px;
+}
+
+.primary-button {
+  border:1px solid var(--green);
+  background:rgba(101,255,178,.12);
+  color:var(--green);
+  padding:15px 30px;
+  border-radius:30px;
+  font-weight:bold;
+  transition:.25s;
+  box-shadow:var(--glow);
+}
+
+.primary-button:hover {
+  background:var(--green);
+  color:#061510;
 }
 
 .voice-message {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 20px;
-  line-height: 1.6;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:20px;
+  line-height:1.6;
 }
 
-/* MENSAJES */
-
 #toast {
-  position: fixed;
-  left: 50%;
-  bottom: 25px;
-  transform: translateX(-50%);
-  background: #102c21;
-  border: 1px solid var(--green);
-  color: var(--green);
-  padding: 12px 18px;
-  border-radius: 20px;
-  font-size: 12px;
-  display: none;
-  z-index: 20;
-  max-width: 90%;
-  text-align: center;
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%);
+  background:#102c21;
+  border:1px solid var(--green);
+  color:var(--green);
+  padding:12px 18px;
+  border-radius:20px;
+  font-size:12px;
+  display:none;
+  z-index:20;
+  max-width:90%;
+  text-align:center;
 }
 
 footer {
-  text-align: center;
-  padding: 35px 10px 65px;
-  color: #587866;
-  font-size: 10px;
-  letter-spacing: 2px;
+  text-align:center;
+  padding:35px 10px 65px;
+  color:#587866;
+  font-size:10px;
+  letter-spacing:2px;
 }
 
 /* ANIMACIONES */
 
-@keyframes pulse {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.06); }
+@keyframes spin {
+  to { transform:rotate(360deg); }
 }
 
-@keyframes corePulse {
-  0%,100% {
-    box-shadow: 0 0 20px rgba(101,255,178,.2),
-    inset 0 0 25px rgba(101,255,178,.1);
-  }
-  50% {
-    box-shadow: 0 0 38px rgba(101,255,178,.45),
-    inset 0 0 35px rgba(101,255,178,.2);
-  }
+@keyframes spinReverse {
+  to { transform:rotate(-360deg); }
+}
+
+@keyframes coreBreath {
+  0%,100% { transform:scale(1); }
+  50% { transform:scale(1.08); }
+}
+
+@keyframes activationPulse {
+  from { transform:scale(1); filter:brightness(1); }
+  to { transform:scale(1.2); filter:brightness(1.8); }
 }
 
 @keyframes chibiFloat {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-9px); }
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-9px); }
 }
 
 @keyframes appear {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity:0; transform:translateY(15px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
 /* CELULARES */
 
-@media (max-width: 700px) {
-  #dashboardScreen, #voiceSettingsScreen {
-    padding: 16px;
-  }
-
-  .main-panel {
-    grid-template-columns: 1fr;
-  }
-
-  .modules-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .topbar {
-    align-items: flex-start;
-  }
-
-  .brand {
-    font-size: 18px;
-  }
-
-  .system-status {
-    font-size: 9px;
-    text-align: right;
-  }
-
-  .assistant-panel {
-    align-items: flex-start;
-  }
-
-  .assistant-actions {
-    width: 100%;
-  }
-
-  .small-button {
-    flex: 1;
-  }
-
+@media(max-width:700px) {
+  #dashboardScreen,#voiceSettingsScreen { padding:16px; }
+  .main-panel { grid-template-columns:1fr; }
+  .modules-grid { grid-template-columns:repeat(2,1fr); }
+  .topbar { align-items:flex-start; }
+  .brand { font-size:18px; }
+  .system-status { font-size:9px; text-align:right; }
+  .assistant-panel { align-items:flex-start; }
+  .assistant-actions { width:100%; }
+  .small-button { flex:1; }
   .chibi-area {
-    right: 8px;
-    bottom: 7px;
-    transform: scale(.85);
-    transform-origin: bottom right;
+    right:8px;
+    bottom:7px;
+    transform:scale(.85);
+    transform-origin:bottom right;
   }
-
-  footer {
-    padding-bottom: 95px;
-  }
+  footer { padding-bottom:95px; }
 }
 </style>
 </head>
@@ -696,35 +769,58 @@ footer {
 
 <div class="background-grid"></div>
 
-<!-- BIENVENIDA -->
+<!-- PRIMERA PANTALLA: REACTOR ARC -->
 
 <section id="welcomeScreen" class="screen active">
   <div class="welcome-content">
-    <div class="welcome-orb">✧</div>
+
+    <p class="welcome-kicker">PERSONAL INTELLIGENCE SYSTEM</p>
 
     <h1>B.E.L.L.A.</h1>
 
-    <p class="welcome-subtitle">
-      PERSONAL INTELLIGENCE SYSTEM
+    <p class="welcome-subtitle">SISTEMA CENTRAL</p>
+
+    <div
+      class="reactor-zone"
+      id="reactorZone"
+      role="button"
+      tabindex="0"
+      aria-label="Activar B.E.L.L.A."
+      onclick="activateWelcome()"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();activateWelcome();}"
+    >
+      <div class="reactor">
+        <div class="reactor-ring ring-one"></div>
+        <div class="reactor-ring ring-two"></div>
+        <div class="reactor-ring ring-three"></div>
+        <div class="reactor-core"></div>
+      </div>
+    </div>
+
+    <p class="reactor-caption" id="reactorCaption">
+      NÚCLEO EN ESPERA
     </p>
 
-    <p class="welcome-message">
-      Buenos días, Renata.<br>
-      Sistema central preparado.<br>
-      Estoy lista para comenzar.
+    <h2 class="welcome-greeting" id="welcomeGreeting">
+      Bienvenida de vuelta.
+    </h2>
+
+    <p class="welcome-message" id="welcomeMessage">
+      Toca el núcleo para activar el sistema.
     </p>
 
-    <button class="primary-button" onclick="showDashboard()">
-      INICIAR SISTEMA
-    </button>
+    <p class="welcome-hint" id="welcomeHint">
+      TOCA EL REACTOR PARA INICIAR
+    </p>
 
     <p class="welcome-footer">
-      SECURE PERSONAL ENVIRONMENT
+      SECURE PERSONAL ENVIRONMENT · 2026
     </p>
+
   </div>
 </section>
 
-<!-- CENTRO DE CONTROL -->
+<!-- SEGUNDA PANTALLA: CENTRO DE CONTROL -->
 
 <section id="dashboardScreen" class="screen">
 
@@ -767,7 +863,7 @@ footer {
 
         <div class="weather">
           <div class="weather-location">
-            <span>⌖</span> LA SERENA, CHILE
+            ⌖ LA SERENA, CHILE
           </div>
 
           <div id="weatherInfo" class="weather-info">
@@ -866,7 +962,7 @@ footer {
 
   </main>
 
-  <!-- CHIBI -->
+  <!-- CHIBI SOLO EN ESTA PANTALLA -->
 
   <div class="chibi-area">
     <div class="chibi-label">Aquí estoy ✨</div>
@@ -914,17 +1010,11 @@ footer {
       <div class="setting-group">
         <label for="rate">
           Velocidad
-          <span class="setting-value" id="rateValue">1.0</span>
+          <span class="setting-value" id="rateValue">1.00</span>
         </label>
 
-        <input
-          type="range"
-          id="rate"
-          min="0.7"
-          max="1.3"
-          step="0.05"
-          value="1"
-        >
+        <input type="range" id="rate"
+          min="0.7" max="1.3" step="0.05" value="1">
       </div>
 
       <div class="setting-group">
@@ -933,14 +1023,8 @@ footer {
           <span class="setting-value" id="pitchValue">1.05</span>
         </label>
 
-        <input
-          type="range"
-          id="pitch"
-          min="0.7"
-          max="1.4"
-          step="0.05"
-          value="1.05"
-        >
+        <input type="range" id="pitch"
+          min="0.7" max="1.4" step="0.05" value="1.05">
       </div>
 
       <div class="voice-buttons">
@@ -965,8 +1049,6 @@ footer {
 
 <div id="toast"></div>
 
-<!-- ARCHIVO DE VOZ EXTERNO -->
-
 <script src="voz.js"></script>
 
 <script>
@@ -980,9 +1062,7 @@ function showScreen(screenId) {
 
   const target = document.getElementById(screenId);
 
-  if (target) {
-    target.classList.add("active");
-  }
+  if (target) target.classList.add("active");
 }
 
 function showDashboard() {
@@ -1000,6 +1080,71 @@ function backToDashboard() {
   showDashboard();
 }
 
+/* SALUDO SEGÚN LA HORA */
+
+function getGreeting() {
+  const hour = new Date().getHours();
+
+  if (hour >= 5 && hour < 12) return "Buenos días";
+  if (hour >= 12 && hour < 20) return "Buenas tardes";
+  return "Buenas noches";
+}
+
+function getTimeText() {
+  return new Date().toLocaleTimeString("es-CL", {
+    hour:"2-digit",
+    minute:"2-digit",
+    hour12:false
+  });
+}
+
+/* ACTIVACIÓN DEL REACTOR */
+
+let reactorActivated = false;
+
+function activateWelcome() {
+  if (reactorActivated) return;
+
+  reactorActivated = true;
+
+  const reactor = document.getElementById("reactorZone");
+  const caption = document.getElementById("reactorCaption");
+  const greeting = document.getElementById("welcomeGreeting");
+  const message = document.getElementById("welcomeMessage");
+  const hint = document.getElementById("welcomeHint");
+
+  reactor.classList.add("activating");
+
+  caption.textContent = "INICIANDO SISTEMA...";
+  hint.textContent = "ACTIVANDO NÚCLEO CENTRAL";
+
+  const hourGreeting = getGreeting();
+  const time = getTimeText();
+
+  const spokenGreeting =
+    hourGreeting + ", Renata. Son las " + time +
+    ". Me alegra tenerte de vuelta. " +
+    "Tu sistema personal está listo. ¿Qué haremos hoy?";
+
+  greeting.textContent = hourGreeting + ", Renata.";
+  message.textContent = "Iniciando sistemas personales...";
+
+  caption.textContent = "NÚCLEO ACTIVADO";
+  hint.textContent = "B.E.L.L.A. ESTÁ DESPERTANDO";
+
+  if (window.BELLA_VOICE && window.BELLA_VOICE.speak) {
+    window.BELLA_VOICE.speak(spokenGreeting);
+  }
+
+  /* Tiempo aproximado para que termine el saludo */
+  const estimatedDuration = Math.max(5500, spokenGreeting.length * 75);
+
+  setTimeout(() => {
+    showDashboard();
+    setAssistantMessage("Bienvenida de vuelta, Renata. Estoy a tu disposición.");
+  }, estimatedDuration);
+}
+
 /* RELOJ */
 
 function updateClock() {
@@ -1011,21 +1156,21 @@ function updateClock() {
   if (!clock || !date) return;
 
   clock.textContent = now.toLocaleTimeString("es-CL", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false
+    hour:"2-digit",
+    minute:"2-digit",
+    second:"2-digit",
+    hour12:false
   });
 
   date.textContent = now.toLocaleDateString("es-CL", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric"
+    weekday:"long",
+    day:"numeric",
+    month:"long",
+    year:"numeric"
   });
 }
 
-setInterval(updateClock, 1000);
+setInterval(updateClock,1000);
 updateClock();
 
 /* CLIMA DE LA SERENA */
@@ -1039,30 +1184,28 @@ async function loadWeather() {
       "https://api.open-meteo.com/v1/forecast?latitude=-29.9027&longitude=-71.2519&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code&timezone=America%2FSantiago"
     );
 
-    if (!response.ok) {
-      throw new Error("No se pudo consultar el clima");
-    }
+    if (!response.ok) throw new Error("Error de clima");
 
     const data = await response.json();
     const current = data.current;
 
     const descriptions = {
-      0: "Despejado ☀️",
-      1: "Mayormente despejado 🌤️",
-      2: "Parcialmente nublado ⛅",
-      3: "Nublado ☁️",
-      45: "Niebla 🌫️",
-      48: "Niebla 🌫️",
-      51: "Llovizna 🌦️",
-      53: "Llovizna 🌦️",
-      55: "Llovizna intensa 🌧️",
-      61: "Lluvia 🌧️",
-      63: "Lluvia 🌧️",
-      65: "Lluvia intensa 🌧️",
-      80: "Chubascos 🌦️",
-      81: "Chubascos 🌧️",
-      82: "Chubascos intensos 🌧️",
-      95: "Tormenta ⛈️"
+      0:"Despejado ☀️",
+      1:"Mayormente despejado 🌤️",
+      2:"Parcialmente nublado ⛅",
+      3:"Nublado ☁️",
+      45:"Niebla 🌫️",
+      48:"Niebla 🌫️",
+      51:"Llovizna 🌦️",
+      53:"Llovizna 🌦️",
+      55:"Llovizna intensa 🌧️",
+      61:"Lluvia 🌧️",
+      63:"Lluvia 🌧️",
+      65:"Lluvia intensa 🌧️",
+      80:"Chubascos 🌦️",
+      81:"Chubascos 🌧️",
+      82:"Chubascos intensos 🌧️",
+      95:"Tormenta ⛈️"
     };
 
     info.textContent =
@@ -1086,13 +1229,12 @@ loadWeather();
 function setAssistantMessage(message) {
   const element = document.getElementById("assistantMessage");
 
-  if (element) {
-    element.textContent = message;
-  }
+  if (element) element.textContent = message;
 
   const voiceMessage = document.getElementById("voiceMessage");
 
-  if (voiceMessage && document.getElementById("voiceSettingsScreen").classList.contains("active")) {
+  if (voiceMessage &&
+      document.getElementById("voiceSettingsScreen").classList.contains("active")) {
     voiceMessage.textContent = message;
   }
 }
@@ -1105,7 +1247,7 @@ function showToast(message) {
 
   setTimeout(() => {
     toast.style.display = "none";
-  }, 3000);
+  },3000);
 }
 
 /* MÓDULOS */
@@ -1117,7 +1259,10 @@ function openModule(moduleName) {
 /* ASISTENTE */
 
 function openAssistant() {
-  setAssistantMessage("Estoy lista para ayudarte. Puedes hablar conmigo desde el botón Hablar.");
+  setAssistantMessage(
+    "Estoy lista para ayudarte. Puedes hablar conmigo desde el botón Hablar."
+  );
+
   showToast("B.E.L.L.A. está disponible.");
 }
 
@@ -1129,7 +1274,8 @@ function loadVoiceSettings() {
   if (!voiceSelect) return;
 
   if (!window.BELLA_VOICE) {
-    voiceSelect.innerHTML = '<option value="">Módulo de voz no disponible</option>';
+    voiceSelect.innerHTML =
+      '<option value="">Módulo de voz no disponible</option>';
     return;
   }
 
@@ -1173,14 +1319,20 @@ function loadVoiceSettings() {
         v.lang && v.lang.toLowerCase().startsWith("es")
       );
 
-      if (spanishVoice) {
-        voiceSelect.value = spanishVoice.name;
-      }
+      if (spanishVoice) voiceSelect.value = spanishVoice.name;
     }
   }
 
   if (voiceSelect.value && window.BELLA_VOICE.setVoice) {
     window.BELLA_VOICE.setVoice(voiceSelect.value);
+  }
+
+  if (window.BELLA_VOICE.setRate) {
+    window.BELLA_VOICE.setRate(Number(savedRate));
+  }
+
+  if (window.BELLA_VOICE.setPitch) {
+    window.BELLA_VOICE.setPitch(Number(savedPitch));
   }
 }
 
@@ -1195,16 +1347,16 @@ function updateRangeLabels() {
     Number(pitch.value).toFixed(2);
 }
 
-document.getElementById("voiceSelect").addEventListener("change", function() {
-  localStorage.setItem("bellaVoiceName", this.value);
+document.getElementById("voiceSelect").addEventListener("change",function() {
+  localStorage.setItem("bellaVoiceName",this.value);
 
   if (window.BELLA_VOICE && window.BELLA_VOICE.setVoice) {
     window.BELLA_VOICE.setVoice(this.value);
   }
 });
 
-document.getElementById("rate").addEventListener("input", function() {
-  localStorage.setItem("bellaVoiceRate", this.value);
+document.getElementById("rate").addEventListener("input",function() {
+  localStorage.setItem("bellaVoiceRate",this.value);
 
   if (window.BELLA_VOICE && window.BELLA_VOICE.setRate) {
     window.BELLA_VOICE.setRate(Number(this.value));
@@ -1213,8 +1365,8 @@ document.getElementById("rate").addEventListener("input", function() {
   updateRangeLabels();
 });
 
-document.getElementById("pitch").addEventListener("input", function() {
-  localStorage.setItem("bellaVoicePitch", this.value);
+document.getElementById("pitch").addEventListener("input",function() {
+  localStorage.setItem("bellaVoicePitch",this.value);
 
   if (window.BELLA_VOICE && window.BELLA_VOICE.setPitch) {
     window.BELLA_VOICE.setPitch(Number(this.value));
@@ -1231,10 +1383,9 @@ function testVoice() {
     return;
   }
 
-  const message =
-    "Hola, Renata. Soy B.E.L.L.A. Tu sistema personal está funcionando.";
-
-  window.BELLA_VOICE.speak(message);
+  window.BELLA_VOICE.speak(
+    "Hola, Renata. Soy B.E.L.L.A. Tu sistema personal está funcionando."
+  );
 }
 
 /* SILENCIO */
@@ -1260,23 +1411,17 @@ function listenBella() {
   window.BELLA_VOICE.listen((message) => {
     setAssistantMessage("Te escuché decir: " + message);
 
-    const response =
-      "He recibido tu mensaje. La conexión de reconocimiento de voz está funcionando.";
-
-    window.BELLA_VOICE.speak(response);
+    window.BELLA_VOICE.speak(
+      "He recibido tu mensaje. El reconocimiento de voz está funcionando."
+    );
   });
 }
 
 /* INICIALIZACIÓN */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded",() => {
   updateClock();
-  loadWeather();
   loadVoiceSettings();
-
-  if (window.BELLA_VOICE && window.BELLA_VOICE.getVoices) {
-    window.BELLA_VOICE.getVoices();
-  }
 });
 
 </script>
