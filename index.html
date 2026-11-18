@@ -1431,7 +1431,165 @@ function showToast(message) {
     toast.style.display = "none";
   },3000);
 }
+/* GOOGLE CALENDAR - CONFIGURACIÓN */
 
+const GOOGLE_CLIENT_ID = "912220324596-qjadtud634tnhd9b45fjfn9adet44lov.apps.googleusercontent.com";
+
+const GOOGLE_SCOPES = "https://www.googleapis.com/auth/calendar.events";
+
+let googleTokenClient = null;
+let googleAccessToken = null;
+let calendarConnected = false;
+/* GOOGLE CALENDAR - AUTENTICACIÓN */
+
+function connectGoogleCalendar() {
+
+  if (!window.google || !google.accounts || !google.accounts.oauth2) {
+    document.getElementById("calendarStatus").textContent =
+      "No se pudo cargar Google. Recarga la página e inténtalo nuevamente.";
+    return;
+  }
+
+  googleTokenClient = google.accounts.oauth2.initTokenClient({
+    client_id: GOOGLE_CLIENT_ID,
+    scope: GOOGLE_SCOPES,
+
+    callback: (response) => {
+
+      if (response.error) {
+        document.getElementById("calendarStatus").textContent =
+          "No se pudo conectar con Google Calendar.";
+        return;
+      }
+
+      googleAccessToken = response.access_token;
+      calendarConnected = true;
+
+      updateCalendarConnectionUI();
+      loadCalendarEvents();
+
+    }
+  });
+
+  googleTokenClient.requestAccessToken();
+}
+
+/* ESTADO DE CONEXIÓN */
+
+function updateCalendarConnectionUI() {
+
+  const status = document.getElementById("calendarStatus");
+  const connectButton = document.getElementById("connectGoogleButton");
+  const refreshButton = document.getElementById("refreshCalendarButton");
+  const formCard = document.getElementById("eventFormCard");
+  const eventsCard = document.getElementById("eventsCard");
+
+  if (calendarConnected) {
+
+    status.textContent = "Google Calendar conectado correctamente.";
+
+    connectButton.textContent = "Conectado a Google Calendar";
+    refreshButton.style.display = "inline-block";
+    formCard.style.display = "block";
+    eventsCard.style.display = "block";
+
+  } else {
+
+    status.textContent = "Google Calendar todavía no está conectado.";
+
+    connectButton.textContent = "Conectar Google Calendar";
+    refreshButton.style.display = "none";
+    formCard.style.display = "none";
+    eventsCard.style.display = "none";
+
+  }
+}
+/* LEER EVENTOS DE GOOGLE CALENDAR */
+
+async function loadCalendarEvents() {
+
+  const container = document.getElementById("calendarEvents");
+
+  if (!googleAccessToken) {
+    container.textContent = "Primero conecta Google Calendar.";
+    return;
+  }
+
+  container.textContent = "Consultando tu calendario...";
+
+  try {
+
+    const now = new Date().toISOString();
+
+    const response = await fetch(
+      "https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=" +
+      encodeURIComponent(now) +
+      "&maxResults=10&orderBy=startTime&singleEvents=true",
+      {
+        headers: {
+          Authorization: "Bearer " + googleAccessToken
+        }
+      }
+    );
+
+    if (response.status === 401) {
+      googleAccessToken = null;
+      calendarConnected = false;
+      updateCalendarConnectionUI();
+      container.textContent = "Tu sesión expiró. Vuelve a conectar Google Calendar.";
+      return;
+    }
+
+    if (!response.ok) {
+      throw new Error("No se pudieron consultar los eventos.");
+    }
+
+    const data = await response.json();
+
+    container.replaceChildren();
+
+    if (!data.items || data.items.length === 0) {
+      container.textContent = "No tienes eventos próximos. ¡Agenda despejada!";
+      return;
+    }
+
+    data.items.forEach(event => {
+
+      const card = document.createElement("div");
+      card.className = "agenda-event";
+
+      const title = document.createElement("strong");
+      title.textContent = event.summary || "Evento sin título";
+
+      const date = document.createElement("p");
+
+      const start = event.start.dateTime
+        ? new Date(event.start.dateTime).toLocaleString("es-CL")
+        : new Date(event.start.date + "T00:00:00").toLocaleDateString("es-CL");
+
+      date.textContent = start;
+
+      card.appendChild(title);
+      card.appendChild(date);
+
+      if (event.description) {
+        const description = document.createElement("p");
+        description.textContent = event.description;
+        card.appendChild(description);
+      }
+
+      container.appendChild(card);
+
+    });
+
+  } catch (error) {
+
+    container.textContent =
+      "No pude cargar tus eventos. Comprueba tu conexión e inténtalo otra vez.";
+
+  }
+
+}
 /* MÓDULOS */
 
 function openModule(moduleName) {
