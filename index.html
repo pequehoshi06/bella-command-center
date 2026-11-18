@@ -1594,6 +1594,90 @@ async function loadCalendarEvents() {
   }
 
 }
+  /* CREAR EVENTOS EN GOOGLE CALENDAR */
+
+async function createCalendarEvent(event) {
+
+  event.preventDefault();
+
+  if (!googleAccessToken) {
+    alert("Primero conecta Google Calendar.");
+    return;
+  }
+
+  const title = document.getElementById("eventTitle").value.trim();
+  const date = document.getElementById("eventDate").value;
+  const startTime = document.getElementById("eventTime").value;
+  const endTime = document.getElementById("eventEndTime").value;
+  const description = document.getElementById("eventDescription").value.trim();
+
+  if (!title || !date || !startTime || !endTime) {
+    alert("Completa todos los campos obligatorios.");
+    return;
+  }
+
+  if (endTime <= startTime) {
+    alert("La hora de término debe ser posterior a la hora de inicio.");
+    return;
+  }
+
+  const eventData = {
+    summary: title,
+    description: description,
+
+    start: {
+      dateTime: `${date}T${startTime}:00`,
+      timeZone: "America/Santiago"
+    },
+
+    end: {
+      dateTime: `${date}T${endTime}:00`,
+      timeZone: "America/Santiago"
+    }
+  };
+
+  try {
+
+    const response = await fetch(
+      "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+      {
+        method: "POST",
+
+        headers: {
+          Authorization: "Bearer " + googleAccessToken,
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(eventData)
+      }
+    );
+
+    if (response.status === 401) {
+      googleAccessToken = null;
+      calendarConnected = false;
+      updateCalendarConnectionUI();
+      alert("Tu sesión expiró. Vuelve a conectar Google Calendar.");
+      return;
+    }
+
+    if (!response.ok) {
+      throw new Error("No se pudo guardar el evento.");
+    }
+
+    alert("¡Evento guardado correctamente en Google Calendar! 💚");
+
+    document.getElementById("calendarEventForm").reset();
+
+    loadCalendarEvents();
+
+  } catch (error) {
+
+    alert("No se pudo guardar el evento. Inténtalo nuevamente.");
+
+  }
+
+}
+  
 /* MÓDULOS */
 
 function openModule(moduleName) {
@@ -1763,6 +1847,11 @@ function listenBella() {
 document.addEventListener("DOMContentLoaded",() => {
   updateClock();
   loadVoiceSettings();
+   const calendarForm = document.getElementById("calendarEventForm");
+
+  if (calendarForm) {
+    calendarForm.addEventListener("submit", createCalendarEvent);
+  }
 });
 
 </script>
